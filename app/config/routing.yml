@@ -1,0 +1,12 @@
+open_ecoles_annexe:
+    resource: "@OpenEcolesAnnexeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+open_ecoles_front_office:
+    resource: "@OpenEcolesFrontOfficeBundle/Resources/config/routing.yml"
+    prefix:   /Site
+
+open_ecoles_back_office:
+    resource: "@OpenEcolesBackOfficeBundle/Resources/config/routing.yml"
+    prefix:   /Admin
+
