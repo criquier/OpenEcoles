@@ -1,0 +1,7 @@
+parameters:
+#    open_ecoles_front_office.example.class: OpenEcoles\FrontOfficeBundle\Example
+
+services:
+#    open_ecoles_front_office.example:
+#        class: %open_ecoles_front_office.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new OpenEcoles\BackOfficeBundle\OpenEcolesBackOfficeBundle(),
             new OpenEcoles\FrontOfficeBundle\OpenEcolesFrontOfficeBundle(),
             new OpenEcoles\AnnexeBundle\OpenEcolesAnnexeBundle(),
+            new OpenEcoles\TutorialBundle\OpenEcolesTutorialBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
