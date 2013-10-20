@@ -1,3 +1,19 @@
-open_ecoles_front_office_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: OpenEcolesFrontOfficeBundle:Default:index }
+open_ecoles_tutorial_homepage:
+    pattern:  /
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:accueil }
+
+open_ecoles_tutorial_ajout:
+    pattern:  /ajouter
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:creerTutoriel }
+
+open_ecoles_tutorial_modifier:
+    pattern:  /modifier/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:modifierTutoriel }
+
+open_ecoles_tutorial_modifier:
+    pattern:  /supprimer/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:supprimerTutoriel }
+
+open_ecoles_tutorial_validerer:
+    pattern:  /valider/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:validerTutoriel }

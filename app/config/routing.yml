@@ -10,3 +10,6 @@ open_ecoles_back_office:
     resource: "@OpenEcolesBackOfficeBundle/Resources/config/routing.yml"
     prefix:   /Admin
 
+open_ecoles_tutorial:
+    resource: "@OpenEcolesTutorialBundle/Resources/config/routing.yml"
+    prefix:   /Tutoriel

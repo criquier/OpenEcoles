@@ -1,7 +1,10 @@
 parameters:
-#    open_ecoles_front_office.example.class: OpenEcoles\FrontOfficeBundle\Example
+    open_ecoles_tutorial.actionTutoriel.class: OpenEcoles\TutorialBundle\Services\ActionBDTutoriel
 
 services:
-#    open_ecoles_front_office.example:
-#        class: %open_ecoles_front_office.example.class%
+    open_ecoles_tutorial.gestiontutoriel:
+        class: OpenEcoles\TutorialBundle\Services\ActionBDTutoriel
+        arguments: [@doctrine.orm.entity_manager]
+#    open_ecoles_tutorial.example:
+#        class: %open_ecoles_tutorial.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
