@@ -22,6 +22,16 @@ class OpenEcolesFrontOfficeExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $lists = $config["bundles"];
+		
+        $parametres = array();
+        foreach($lists as $list){
+        	$array = array("name"=>$list["name"],"menu_name"=> $list["menuname"], "accueil"=>$list["accueil"]);
+        	$parametres[] = $array;	
+        }
+                
+        $container->setParameter("bundles",$parametres);
+		
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

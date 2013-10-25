@@ -29,7 +29,7 @@ class Chapitre
     private $titre;
 
     /**
-     * @ORM\OneToMany(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre")
+     * @ORM\OneToMany(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre",mappedBy="chapitre")
      */
     private $parent;
 

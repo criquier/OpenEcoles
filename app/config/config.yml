@@ -64,3 +64,18 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+open_ecoles_front_office:
+    bundles:
+        bundlequatre:
+            name: "OnEcolesTutorialBundle"
+            accueil: "penEcolesTutorialBundle:Accueil:index"
+            menuname: "Cours3"
+        bundletrois:
+            name: "OpenEcolesutorialBundle"
+            accueil: "OpenEcoesTutorialBundle:Accueil:index"
+            menuname: "Cours2"
+        bundleun:
+            name: "OpenEcolesTutorialBundle"
+            accueil: "OpenEcolesTutorialBundle:Accueil:index"
+            menuname: "Cours"

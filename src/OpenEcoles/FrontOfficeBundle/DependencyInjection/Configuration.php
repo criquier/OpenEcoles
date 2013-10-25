@@ -19,7 +19,17 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('open_ecoles_front_office');
-
+		
+        $rootNode->children()
+        			->arrayNode("bundles")
+					->prototype("array")
+        				->children()
+        					->scalarNode("name")->end()
+        					->scalarNode("accueil")->end()
+        					->scalarNode('menuname')->end()
+						->end()						
+        			->end()
+        		->end();
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.

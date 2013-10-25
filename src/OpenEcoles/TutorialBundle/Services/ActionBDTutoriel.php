@@ -19,6 +19,12 @@ class ActionBDTutoriel{
         return $tutoriels;
     }
 
+	public function getAllNotValidateTutoriel(){
+        $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
+        $tutoriels = $tutoriel_repository->findBy(array("valide"=>false));
+        return $tutoriels;
+    }
+	
     public function getAllTutoriel(){
         $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
         $tutoriels = $tutoriel_repository->findAll();

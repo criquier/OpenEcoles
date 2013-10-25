@@ -15,9 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TutorielController extends Controller{
 
     public function accueilAction(){
-        $this->container->get("open_ecoles_tutorial.gestiontutoriel");
-        return $this->render("OpenEcolesTutorialBundle:Default:index.html.twig",array(
-            "name"=>"Camille"
+        $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+        $tutoriels = $manager->getAllValidateTutoriel();
+        return $this->render("OpenEcolesTutorialBundle:Accueil:index.html.twig",array(
+            "name"=>"Camille",
+        	"tutoriels" => $tutoriels,
         ));
     }
 

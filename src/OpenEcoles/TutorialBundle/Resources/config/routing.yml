@@ -1,3 +1,8 @@
+##############################
+# Fichier de configuration du bundle Tutoriel
+##############################
+
+
 open_ecoles_tutorial_homepage:
     pattern:  /
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:accueil }
@@ -10,10 +15,10 @@ open_ecoles_tutorial_modifier:
     pattern:  /modifier/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:modifierTutoriel }
 
-open_ecoles_tutorial_modifier:
+open_ecoles_tutorial_supprimer:
     pattern:  /supprimer/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:supprimerTutoriel }
 
-open_ecoles_tutorial_validerer:
+open_ecoles_tutorial_valider:
     pattern:  /valider/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:validerTutoriel }
