@@ -15,11 +15,3 @@ body{
     height: 10%
 }
 
-.menu_gauche{
-	width:25%;
-}
-
-.nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus{
-	background-color : rgb(122,183,23)
-}
-

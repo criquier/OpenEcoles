@@ -31,6 +31,24 @@ class ActionBDTutoriel{
         return $tutoriels;
     }
 
+    public function getAllValidateTutorielByCategory($category){
+        $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
+        $tutoriels = $tutoriel_repository->findBy(array("valide"=>true,"categorie"=>$category));
+        return $tutoriels;
+    }
+
+    public function getAllNotValidateTutorielByCategory($category){
+        $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
+        $tutoriels = $tutoriel_repository->findBy(array("valide"=>false,"categorie"=>$category));
+        return $tutoriels;
+    }
+
+    public function getAllTutorielByCategory($category){
+        $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
+        $tutoriels = $tutoriel_repository->findByCategorie($category);
+        return $tutoriels;
+    }
+
     public function save(Tutoriel $tuto){
         $this->em->persist($tuto);
         $this->em->flush();
@@ -41,5 +59,11 @@ class ActionBDTutoriel{
         $this->em->remove($tuto);
         $this->em->flush();
         return $tuto;
+    }
+
+    public function validateTutoriel(Tutoriel &$tutoriel){
+        if(!$tutoriel->getValide())
+            $tutoriel->setValide(true);
+        return true;
     }
 }

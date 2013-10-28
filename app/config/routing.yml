@@ -1,6 +1,6 @@
 open_ecoles_annexe:
     resource: "@OpenEcolesAnnexeBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /annexeDesBundles
 
 open_ecoles_front_office:
     resource: "@OpenEcolesFrontOfficeBundle/Resources/config/routing.yml"

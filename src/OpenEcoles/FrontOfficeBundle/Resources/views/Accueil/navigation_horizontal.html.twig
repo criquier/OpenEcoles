@@ -1,0 +1,10 @@
+<ul class="nav nav-pills">
+    <li class="active"><a href="{{path("open_ecoles_front_office_homepage")}}"><i class="icon-home"></i>Accueil</a></li>
+
+    {% for bundle in bundles %}
+        <li class=""><a href="{{path("open_ecoles_front_office_homepage")}}../{{bundle.name}}">{{ bundle.menu_name }}</a></li>
+    {% else %}
+    Il n'y a que l'accueil pas de bundle sur le serveur
+    {% endfor %}
+
+</ul>

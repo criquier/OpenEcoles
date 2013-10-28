@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
         					->scalarNode("name")->end()
         					->scalarNode("accueil")->end()
         					->scalarNode('menuname')->end()
-						->end()						
+						->end()
         			->end()
         		->end();
         // Here you should define the parameters that are allowed to

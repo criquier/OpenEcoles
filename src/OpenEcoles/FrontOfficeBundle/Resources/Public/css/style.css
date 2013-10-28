@@ -1,0 +1,19 @@
+.menu_gauche{
+    width:25%;
+}
+nav[id*="menu"]{
+    width:10%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+section[id*="content"]{
+    width:75%;
+    display:inline-block;
+    vertical-align: top;
+}
+
+section[id*="recommandation"]{
+    display:inline-block;
+    vertical-align: top;
+}

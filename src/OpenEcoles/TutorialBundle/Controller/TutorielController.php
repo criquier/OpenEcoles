@@ -10,32 +10,82 @@
 namespace OpenEcoles\TutorialBundle\Controller;
 
 use OpenEcoles\TutorialBundle\Entity\Tutoriel;
+use OpenEcoles\TutorialBundle\Forms\TutorielType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class TutorielController extends Controller{
 
     public function accueilAction(){
         $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
-        $tutoriels = $manager->getAllValidateTutoriel();
-        return $this->render("OpenEcolesTutorialBundle:Accueil:index.html.twig",array(
-            "name"=>"Camille",
+        $tutoriels = $manager->getAllTutoriel();
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:index.html.twig",array(
+            "name"=>"camille",
         	"tutoriels" => $tutoriels,
         ));
     }
 
-    public function creerTutorielAction(){
+    public function creerTutorielAction(Request $request){
+        //creation de l'objet tutoriel
+        $tutoriel = new Tutoriel();
+        $tutoriel->setCategorie("Informatique");
 
+        // création du formulaire
+        $form = $this->createForm(new TutorielType("Créer"), $tutoriel);
+
+        //validation des données du formulaire
+        $validation = $this->get("open_ecoles_tutorial.validationTutoriel");
+        if($validation->validateTutoriel($tutoriel,$form,$request)){
+            $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+            $manager->save($tutoriel);
+            $view = $this->forward("OpenEcolesTutorialBundle:Accueil:accueil");
+            return $view;
+        }
+
+        //Envoie du template associé à l'action => template du formulaire.
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:formulaire_tutoriel.html.twig",array(
+           "form" => $form->createView(),
+            "action" => "Créer"
+        ));
     }
 
-    public function modifierTutorielAction(Tutoriel $tutoriel){
+    public function modifierTutorielAction(Tutoriel $tutoriel,Request $request){
+        // création du formulaire
+        $form = $this->createForm(new TutorielType("Modifier"), $tutoriel);
 
+        //validation des données du formulaire
+        $validation = $this->get("open_ecoles_tutorial.validationTutoriel");
+        if($validation->validateTutoriel($tutoriel,$form,$request)){
+            $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+            $manager->save($tutoriel);
+            $view = $this->forward("OpenEcolesTutorialBundle:Accueil:accueil");
+
+            return $view;
+        }
+
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:formulaire_tutoriel.html.twig",array(
+            "form" => $form->createView(),
+            "action" => "Modifier"
+            )
+        );
     }
 
     public function supprimerTutorielAction(Tutoriel $tutoriel){
+        $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
 
+        $manager->delete($tutoriel);
+
+        return new Response("ok");
     }
 
     public function validerTutorielAction(Tutoriel $tutoriel){
+        $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
 
+        $manager->validate($tutoriel);
+        $manager->save($tutoriel);
+
+        return new Response("ok");
     }
 }

@@ -2,13 +2,18 @@
 
 namespace OpenEcoles\TutorialBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Tutoriel
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="OpenEcoles\TutorialBundle\Entity\TutorielRepository")
+ * @UniqueEntity(fields="titre",message="Il existe déja un tutoriel avec ce titre-ci")
  */
 class Tutoriel
 {
@@ -25,8 +30,39 @@ class Tutoriel
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
+     *
      */
     private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=255)
+     *
+     *    */
+    private $categorie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     *
+     *
+     */
+    private $description;
+
+    /*
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    //private $auteur;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="dateDeCreation", type="datetime")
+     */
+    private $dateCreation;
 
     /**
      *@var boolean
@@ -37,6 +73,7 @@ class Tutoriel
 
     public function __construct(){
         $this->valide = false;
+        $this->dateCreation = new \DateTime();
     }
 
     /**
@@ -93,5 +130,74 @@ class Tutoriel
     public function getValide()
     {
         return $this->valide;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     * @return Tutoriel
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return string 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Tutoriel
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return Tutoriel
+     */
+    public function setDateCreation(\DateTime $dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
     }
 }
