@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {{ render(controller("OpenEcolesBackOfficeBundle:Accueil:navigationHorizontale"))}}
+    {% block section %}
+        Contenu de l'accueil, bienvenue sur la page d'administration du site
+    {% endblock%}
+
+{% endblock %}

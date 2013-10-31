@@ -2,10 +2,23 @@
 # Fichier de configuration du bundle Tutoriel
 ##############################
 
+################################
+# Gestion des tutoriel(entity) #
+################################
 
+# page du front
 open_ecoles_tutorial_homepage:
     pattern:  /
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:accueil }
+
+#page du back
+open_ecoles_tutorial_back_homepage:
+    pattern:  /Admin
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:backAccueil }
+
+open_ecoles_tutorial_visualiser:
+    pattern:  /voir/tutoriel/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel }
 
 open_ecoles_tutorial_ajout:
     pattern:  /ajouter
@@ -22,3 +35,51 @@ open_ecoles_tutorial_supprimer:
 open_ecoles_tutorial_valider:
     pattern:  /valider/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:validerTutoriel }
+
+
+###############################
+#    Gestion des chapitres    #
+###############################
+open_ecoles_tutorial_homepage_chapitre:
+    pattern:  /
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:accueil }
+
+open_ecoles_tutorial_visualiser_section:
+    pattern:  /section/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:visualiserChapitre }
+
+open_ecoles_tutorial_ajout_section:
+    pattern:  /ajouter/section/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:creerSection }
+
+open_ecoles_tutorial_modifier_section:
+    pattern:  /modifier/section/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:modifierChapitre }
+
+open_ecoles_tutorial_supprimer_section:
+    pattern:  /supprimer/section/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:supprimerSection }
+
+open_ecoles_tutorial_visualiser_chapitre:
+    pattern:  /chapitre/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:visualiserChapitre }
+
+open_ecoles_tutorial_ajout_chapitre:
+    pattern:  /ajouter/chapitre/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:creerChapitre }
+
+open_ecoles_tutorial_modifier_chapitre:
+    pattern:  /modifier/chapitre/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:modifierChapitre }
+
+open_ecoles_tutorial_supprimer_chapitre:
+    pattern:  /supprimer/chapitre/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:supprimerChapitre }
+
+#####################################
+#   Gestion des catégories de tuto  #
+#####################################
+
+open_ecoles_tutorial_categorie:
+    pattern: /categorie
+    defaults: {_controller:OpenEcolesTutorialBundle:Category:index}

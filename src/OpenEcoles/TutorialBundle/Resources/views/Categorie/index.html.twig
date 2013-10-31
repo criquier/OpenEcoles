@@ -1,0 +1,11 @@
+{% extends "OpenEcolesTutorialBundle:Tutoriel:backIndex.html.twig"%}
+
+{% block content %}
+<ul>
+    {% for categorie in categories%}
+        <li>{{categorie.getNom}}</li>
+    {% else %}
+        Ya pas de categories pour l'instant
+    {%endfor%}
+</ul>
+{% endblock %}

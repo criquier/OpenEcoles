@@ -22,6 +22,16 @@ class OpenEcolesBackOfficeExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $lists = $config["backbundles"];
+
+        $parametres = array();
+        foreach($lists as $list){
+            $array = array("name"=>$list["bname"],"menu_name"=> $list["bmenuname"], "accueil"=>$list["baccueil"]);
+            $parametres[] = $array;
+        }
+
+        $container->setParameter("backbundles",$parametres);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

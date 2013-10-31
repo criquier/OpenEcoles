@@ -6,12 +6,10 @@
 
 
 {{ form_start(form)}}
-
     <span class="label label-warning">{{ form_errors(form) }}</span>
-
-
     {{ form_row(form.titre) }}
     {{ form_row(form.description) }}
+    {{ form_row(form.categorie) }}
     <input value="{{ action }}" type="submit" />
     <input value="Annuler" type="submit" />
 

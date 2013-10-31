@@ -24,10 +24,14 @@ class UniteTexte
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=255)
+     * @ORM\Column(name="contenu", type="text")
      */
     private $contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre")
+     */
+    private $chapitre;
 
     /**
      * Get id
@@ -60,5 +64,28 @@ class UniteTexte
     public function getContenu()
     {
         return $this->contenu;
+    }
+
+    /**
+     * Set chapitre
+     *
+     * @param \OpenEcoles\TutorialBundle\Entity\Chapitre $chapitre
+     * @return UniteTexte
+     */
+    public function setChapitre(\OpenEcoles\TutorialBundle\Entity\Chapitre $chapitre = null)
+    {
+        $this->chapitre = $chapitre;
+    
+        return $this;
+    }
+
+    /**
+     * Get chapitre
+     *
+     * @return \OpenEcoles\TutorialBundle\Entity\Chapitre 
+     */
+    public function getChapitre()
+    {
+        return $this->chapitre;
     }
 }

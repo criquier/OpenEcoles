@@ -20,6 +20,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('open_ecoles_tutorial');
 
+        $rootNode->children()
+                    ->arrayNode("limitation")
+                    ->children()
+                        ->scalarNode("affichage_max_tutoriel_categorie")->end()
+                    ->end()
+                 ->end();
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.

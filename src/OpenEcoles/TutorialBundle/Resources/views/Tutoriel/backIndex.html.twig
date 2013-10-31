@@ -1,0 +1,20 @@
+{% extends "OpenEcolesBackOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesbackoffice/css/style.css") }}"/>
+{% endblock %}
+
+{% block section %}
+    <section id="menu" >
+        <nav class="nav nav-pills nav-stacked">
+            <li><a href="{{ path("open_ecoles_tutorial_categorie")}}">Cat&eacute;gories</a></li>
+            <li><a href="#">Tutoriels</a></li>
+        </nav>
+    </section>
+    <section id="corps">
+        {% block content %}
+            On est dans le coté obscur des tutoriels
+        {% endblock %}
+     </section>
+{% endblock %}

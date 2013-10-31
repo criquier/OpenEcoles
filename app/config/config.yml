@@ -103,5 +103,17 @@ open_ecoles_front_office:
     bundles:
         bundleun:
             name: "Tutoriel"
-            accueil: "OpenEcolesTutorialBundle:Accueil:index"
+            accueil: "open_ecoles_tutorial_homepage"
             menuname: "Cours"
+
+open_ecoles_back_office:
+    backbundles:
+        backbundleun:
+            bname: "Tutoriel"
+            baccueil: "open_ecoles_tutorial_back_homepage"
+            bmenuname: "Catégories & tutoriels"
+
+
+open_ecoles_tutorial:
+    limitation:
+        affichage_max_tutoriel_categorie: 3

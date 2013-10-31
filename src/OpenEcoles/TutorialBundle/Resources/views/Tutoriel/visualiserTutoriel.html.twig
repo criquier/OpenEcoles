@@ -1,0 +1,30 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+{% endblock %}
+
+{% block section %}
+    <article>
+        <header>
+            <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}">Modifier le tutoriel</a><br/>
+            titre : {{ tutoriel.getTitre }}<br/>
+            <div id="star" data-number="3"></div>
+            Moyenne : {{ tutoriel.getNote }}
+        </header>
+        <section>
+            <section>
+                {{ tutoriel.getDescription|raw }}
+            </section>
+            <section>
+                <a href="{{ path("open_ecoles_tutorial_ajout_section",{'id':tutoriel.getId}) }}" >ajouter une section</a>
+                {{ render(controller("OpenEcolesTutorialBundle:Chapitre:accueil",{'id':tutoriel.getId})) }}
+            </section>
+        </section>
+    </article>
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+{% endblock %}

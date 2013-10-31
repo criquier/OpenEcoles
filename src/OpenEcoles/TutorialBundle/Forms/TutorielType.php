@@ -24,7 +24,7 @@ class TutorielType extends AbstractType{
     {
         $builder->add('titre',null,array("required"=>true));
         $builder->add('description',null,array("required"=>true,"attr"=>array("class"=>"tinymce")));
-        $builder->add('catégorie',null,array("required"=>true));
+        $builder->add('categorie',null,array("required"=>true));
     }
 
     public function getName()

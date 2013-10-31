@@ -35,11 +35,8 @@ class Tutoriel
     private $titre;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categorie", type="string", length=255)
-     *
-     *    */
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Categorie")
+     */
     private $categorie;
 
     /**
@@ -71,9 +68,18 @@ class Tutoriel
      */
     private $valide;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note", type="integer")
+     */
+    private $note;
+
+
     public function __construct(){
         $this->valide = false;
         $this->dateCreation = new \DateTime();
+        $this->note = 0;
     }
 
     /**
@@ -199,5 +205,28 @@ class Tutoriel
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+
+    /**
+     * Set note
+     *
+     * @param integer $note
+     * @return Tutoriel
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return integer 
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }

@@ -20,10 +20,27 @@ class TutorielController extends Controller{
 
     public function accueilAction(){
         $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
-        $tutoriels = $manager->getAllTutoriel();
+        $tutoriels = $manager->getAllValidateTutoriel();
+
+        $managerCategorie = $this->container->get("open_ecoles_tutorial.gestionCategorie");
+        $categories = $managerCategorie->getAllCategories();
+
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:index.html.twig",array(
-            "name"=>"camille",
         	"tutoriels" => $tutoriels,
+            "categories" => $categories,
+        ));
+    }
+
+    public function backAccueilAction(){
+        $managerTuto = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+        $tutoriels = $managerTuto->getAllValidateTutoriel();
+
+        $managerCategorie = $this->container->get("open_ecoles_tutorial.gestionCategorie");
+        $categories = $managerCategorie->getAllCategories();
+
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:backIndex.html.twig",array(
+            "tutoriels" => $tutoriels,
+            "categories" => $categories,
         ));
     }
 
@@ -40,7 +57,7 @@ class TutorielController extends Controller{
         if($validation->validateTutoriel($tutoriel,$form,$request)){
             $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
             $manager->save($tutoriel);
-            $view = $this->forward("OpenEcolesTutorialBundle:Accueil:accueil");
+            $view = $this->forward("OpenEcolesTutorialBundle:Tutoriel:accueil");
             return $view;
         }
 
@@ -60,7 +77,7 @@ class TutorielController extends Controller{
         if($validation->validateTutoriel($tutoriel,$form,$request)){
             $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
             $manager->save($tutoriel);
-            $view = $this->forward("OpenEcolesTutorialBundle:Accueil:accueil");
+            $view = $this->forward("OpenEcolesTutorialBundle:Tutoriel:accueil");
 
             return $view;
         }
@@ -87,5 +104,11 @@ class TutorielController extends Controller{
         $manager->save($tutoriel);
 
         return new Response("ok");
+    }
+
+    public function visualiserTutorielAction(Tutoriel $tutoriel){
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel.html.twig",array(
+            "tutoriel" => $tutoriel,
+        ));
     }
 }

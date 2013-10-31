@@ -29,10 +29,23 @@ class Chapitre
     private $titre;
 
     /**
-     * @ORM\OneToMany(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre",mappedBy="chapitre")
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre")
      */
     private $parent;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Tutoriel")
+     */
+    private $tutoriel;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
+
+   
 
     /**
      * Get id
@@ -81,5 +94,51 @@ class Chapitre
 
     public function getParent(){
         return $this->parent;
+    }
+
+    /**
+     * Set tutoriel
+     *
+     * @param \OpenEcoles\TutorialBundle\Entity\Tutoriel $tutoriel
+     * @return Chapitre
+     */
+    public function setTutoriel(\OpenEcoles\TutorialBundle\Entity\Tutoriel $tutoriel = null)
+    {
+        $this->tutoriel = $tutoriel;
+    
+        return $this;
+    }
+
+    /**
+     * Get tutoriel
+     *
+     * @return \OpenEcoles\TutorialBundle\Entity\Tutoriel 
+     */
+    public function getTutoriel()
+    {
+        return $this->tutoriel;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return Chapitre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+    
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 }

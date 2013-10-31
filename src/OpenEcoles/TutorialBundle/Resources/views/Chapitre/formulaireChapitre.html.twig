@@ -1,0 +1,18 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+
+{% block section %}
+<h3>formulaire chapitre: </h3>
+
+{{ form_start(form)}}
+<span class="label label-warning">{{ form_errors(form) }}</span>
+{{ form_row(form.chapitre.titre) }}
+{{ form_row(form.contenu) }}
+<input value="Créer" type="submit"/>
+{{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}
+    {{ tinymce_init() }}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% for chapitre in chapitres %}
+    <article class="accueilChapitre">
+       <a style="color:white" href="{{ path("open_ecoles_tutorial_visualiser_section",{'id':chapitre.getId }) }}">{{ chapitre.getTitre }}</a>
+    </article>
+{% endfor %}

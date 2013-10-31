@@ -4,6 +4,7 @@ namespace OpenEcoles\TutorialBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use OpenEcoles\TutorialBundle\Entity\Tutoriel;
+use OpenEcoles\TutorialBundle\Entity\Categorie;
 
 class ActionBDTutoriel{
 
@@ -31,19 +32,19 @@ class ActionBDTutoriel{
         return $tutoriels;
     }
 
-    public function getAllValidateTutorielByCategory($category){
+    public function getAllValidateTutorielByCategory(Categorie $category){
         $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
         $tutoriels = $tutoriel_repository->findBy(array("valide"=>true,"categorie"=>$category));
         return $tutoriels;
     }
 
-    public function getAllNotValidateTutorielByCategory($category){
+    public function getAllNotValidateTutorielByCategory(Categorie $category){
         $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
         $tutoriels = $tutoriel_repository->findBy(array("valide"=>false,"categorie"=>$category));
         return $tutoriels;
     }
 
-    public function getAllTutorielByCategory($category){
+    public function getAllTutorielByCategory(Categorie $category){
         $tutoriel_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Tutoriel");
         $tutoriels = $tutoriel_repository->findByCategorie($category);
         return $tutoriels;
