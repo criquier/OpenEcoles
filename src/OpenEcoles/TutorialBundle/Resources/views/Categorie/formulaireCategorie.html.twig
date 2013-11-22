@@ -1,0 +1,12 @@
+{% extends "OpenEcolesTutorialBundle:Tutoriel:backIndex.html.twig"%}
+
+{% block content %}
+<ul>
+    <a href="#" >Ajouter une cat&eacute;gorie</a>
+    {% for categorie in categories%}
+    <li>{{categorie.getNom}}<img src="{{asset("bundles/openecolestutorial/images/croixrouge.gif")}}" alt="Supprimer" title="Supprimer" /></li>
+    {% else %}
+    Ya pas de categories pour l'instant
+    {%endfor%}
+</ul>
+{% endblock %}

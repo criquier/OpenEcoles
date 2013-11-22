@@ -1,12 +1,8 @@
 <ul class="nav nav-pills nav-stacked">
-    <li class="active"><a href="{{path("open_ecoles_front_office_homepage")}}"><i class="icon-home"></i>Accueil</a></li>
-    <li><a href="#" >Profil</a></li>
-    <li><a href="#" >Messages <span class="badge">42</span></a></li>
-    <li><a href="#" >Friends</a></li>
-    <li><a href="#" >Billets <span class="badge">42</span></a></li>
-    <li><a href="#" >Mes &eacute;coles <span class="badge">42</span></a></li>
-    <li><a href="#" >Document perso</a></li>
-    <li><a href="#" >Annonces</a></li>
-    <li><a href="#" >Groupes</a></li>
-    <li><a href="#" >Livres</a></li>
+    <li>Mon espace personnel</li>
+    {% for menu in menuV %}
+        <li><a href="{{ path(menu.lien) }}">{{ menu.nom }}</a></li>
+    {% else %}
+        Pas de données
+    {% endfor %}
 </ul>

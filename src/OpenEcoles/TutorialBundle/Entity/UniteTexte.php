@@ -29,7 +29,7 @@ class UniteTexte
     private $contenu;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre")
+     * @ORM\OneToOne(targetEntity="OpenEcoles\TutorialBundle\Entity\Chapitre")
      */
     private $chapitre;
 

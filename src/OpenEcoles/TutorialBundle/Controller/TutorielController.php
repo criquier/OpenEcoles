@@ -10,20 +10,29 @@
 namespace OpenEcoles\TutorialBundle\Controller;
 
 use OpenEcoles\TutorialBundle\Entity\Tutoriel;
+use OpenEcoles\TutorialBundle\Entity\Categorie;
+
 use OpenEcoles\TutorialBundle\Forms\TutorielType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 
 class TutorielController extends Controller{
 
     public function accueilAction(){
-        $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
-        $tutoriels = $manager->getAllValidateTutoriel();
+        $limitation = $this->container->getParameter("affichage_max_tutorial_par_categorie");
 
         $managerCategorie = $this->container->get("open_ecoles_tutorial.gestionCategorie");
         $categories = $managerCategorie->getAllCategories();
+
+        $tutoriels = array();
+        foreach($categories as $categorie){
+            $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+            $tutoriels[$categorie->getNom()] = $manager->getAllValidateTutorielByCategory($categorie,null,$limitation,0);
+        }
 
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:index.html.twig",array(
         	"tutoriels" => $tutoriels,
@@ -89,6 +98,15 @@ class TutorielController extends Controller{
         );
     }
 
+    public function visualiserTutorielBackAction(){
+        $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
+        $tutoriels = $manager->getAllTutoriel();
+
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:visualiserTutorielsBack.html.twig",array(
+            "tutoriels" => $tutoriels,
+        ));
+    }
+
     public function supprimerTutorielAction(Tutoriel $tutoriel){
         $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
 
@@ -100,7 +118,7 @@ class TutorielController extends Controller{
     public function validerTutorielAction(Tutoriel $tutoriel){
         $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
 
-        $manager->validate($tutoriel);
+        $manager->validateTutoriel($tutoriel);
         $manager->save($tutoriel);
 
         return new Response("ok");
@@ -110,5 +128,19 @@ class TutorielController extends Controller{
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel.html.twig",array(
             "tutoriel" => $tutoriel,
         ));
+    }
+
+    public function visualiserAllTutorielByCategoryAction(Categorie $categorie){
+        $manager = $this->get("open_ecoles_tutorial.gestionTutoriel");
+        $tutoriels = $manager->getAllValidateTutorielByCategory($categorie);
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:visualiserTutorielParCategory.html.twig",array(
+            "tutoriels" => $tutoriels,
+        ));
+    }
+
+    public function mesDocumentsAction(){
+        $manager = $this->get("open_ecoles_tutorial.gestionTutoriel");
+        $tutoriels = $manager->getAllTutoriel();
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:mesDocuments.html.twig");
     }
 }

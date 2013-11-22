@@ -20,6 +20,10 @@ open_ecoles_tutorial_visualiser:
     pattern:  /voir/tutoriel/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel }
 
+open_ecoles_tutorial_visualiser_tutoriels:
+    pattern:  /voir/tutoriels
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutorielBack }
+
 open_ecoles_tutorial_ajout:
     pattern:  /ajouter
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:creerTutoriel }
@@ -76,6 +80,13 @@ open_ecoles_tutorial_supprimer_chapitre:
     pattern:  /supprimer/chapitre/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Chapitre:supprimerChapitre }
 
+open_ecoles_tutorial_mes_documents:
+    pattern: /mesDocuments
+    defaults: {_controller: OpenEcolesTutorialBundle:Tutoriel:mesDocuments }
+
+open_ecoles_tutorial_afficher_plus:
+    pattern: /tutoriels/categorie/{id}
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserAllTutorielByCategory}
 #####################################
 #   Gestion des catégories de tuto  #
 #####################################
@@ -83,3 +94,12 @@ open_ecoles_tutorial_supprimer_chapitre:
 open_ecoles_tutorial_categorie:
     pattern: /categorie
     defaults: {_controller:OpenEcolesTutorialBundle:Category:index}
+
+#####################################
+# Gestion des notes                 #
+#####################################
+open_ecoles_tutorial_noter_tutoriel:
+    pattern: /noter/{id}
+    defaults: {_controller:OpenEcolesTutorialBundle:Note:noterTutoriel}
+    requirements:
+        _method: POST

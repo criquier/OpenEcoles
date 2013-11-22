@@ -2,4 +2,8 @@
     <article>
             <a href="{{path("open_ecoles_tutorial_visualiser_chapitre",{'id':chapitre.getId })}}" >{{ chapitre.getTitre }}</a>
     </article>
+{% else %}
+    <article>
+        Pas de chapitre pour cette section
+    </article>
 {% endfor %}

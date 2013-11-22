@@ -45,7 +45,14 @@ class Chapitre
      */
     private $ordre;
 
-   
+
+    /*
+     * @var integer
+     *
+     * @ORM\Column(name="ordreParent", type="integer")
+     */
+    //private $orderParent;
+
 
     /**
      * Get id
@@ -140,5 +147,28 @@ class Chapitre
     public function getOrdre()
     {
         return $this->ordre;
+    }
+
+    /**
+     * Set orderParent
+     *
+     * @param integer $orderParent
+     * @return Chapitre
+     */
+    public function setOrderParent($orderParent)
+    {
+        $this->orderParent = $orderParent;
+    
+        return $this;
+    }
+
+    /**
+     * Get orderParent
+     *
+     * @return integer 
+     */
+    public function getOrderParent()
+    {
+        return $this->orderParent;
     }
 }

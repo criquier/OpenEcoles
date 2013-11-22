@@ -1,0 +1,48 @@
+{% extends "OpenEcolesTutorialBundle:Tutoriel:backIndex.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/datatables/jquery.dataTables.css") }}"/>
+{% endblock %}
+
+{% block content %}
+<article >
+    <table id="tutoriels">
+        <thead>
+            <tr>
+                <td>Titre</td>
+                <td>Auteur</td>
+                <td>Valid&eacute;</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tutoriel in tutoriels %}
+                <tr>
+                    <td>{{ tutoriel.getTitre }}</td>
+                    <td>Inconnu</td>
+                    <td>
+                        {% if tutoriel.getValide %}
+                            oui
+                        {% else %}
+                            non
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</article>
+{% endblock %}
+
+{% block javascripts%}
+{{ parent() }}
+<script src="{{asset("bundles/openecolestutorial/datatables/jquery.dataTables.js")}}"></script>
+<script src="{{asset("bundles/openecolestutorial/datatables/jquery.dataTables.min.js")}}"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#tutoriels").dataTable();
+    });
+</script>
+{% endblock %}

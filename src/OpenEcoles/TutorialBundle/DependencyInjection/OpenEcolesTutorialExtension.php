@@ -22,6 +22,11 @@ class OpenEcolesTutorialExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $limitation = $config["limitation"];
+        $accueil = $limitation["accueil"];
+
+        $container->setParameter("affichage_max_tutorial_par_categorie",$accueil["affichage_max_tutoriel_categorie"]);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

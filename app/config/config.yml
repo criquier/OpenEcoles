@@ -99,12 +99,23 @@ stfalcon_tinymce:
                  menubar: false
                  toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
 
+
 open_ecoles_front_office:
     bundles:
-        bundleun:
-            name: "Tutoriel"
-            accueil: "open_ecoles_tutorial_homepage"
-            menuname: "Cours"
+        bundletutoriel:
+            parametre:
+                name: "Tutoriel"
+            menu_horizontal:
+                element1:
+                    lien: "open_ecoles_tutorial_homepage"
+                    nom: "Tutoriel"
+            menu_vertical:
+                element1:
+                    lien: "open_ecoles_tutorial_mes_documents"
+                    nom: "Mes documents"
+            contenu_central:
+                element1:
+                    render: ""
 
 open_ecoles_back_office:
     backbundles:
@@ -116,4 +127,5 @@ open_ecoles_back_office:
 
 open_ecoles_tutorial:
     limitation:
-        affichage_max_tutoriel_categorie: 3
+        accueil:
+            affichage_max_tutoriel_categorie: 3

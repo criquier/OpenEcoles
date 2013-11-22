@@ -16,11 +16,16 @@
     </head>
     <body>
         <header class="entete">
-            <img src="{{ asset("bundles/openecolesannexe/images/logo.png") }}" class="positionLogo" alt="OpenEcoles" title="OpenEcoles" />
+            <section class="iconSite">
+                <img src="{{ asset("bundles/openecolesannexe/images/logo.png") }}" class="positionLogo" alt="OpenEcoles" title="OpenEcoles" />
+            </section>
+            {% block entete %}
+            {% endblock %}
         </header>
         {% block body %}{% endblock %}
         <footer class="copyright">
-        	CopyRight Tout droit r&eacute;serv&eacute;.
+            {% block footer %}
+            {% endblock %}
         </footer>
         <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
 		<script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>

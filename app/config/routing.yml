@@ -1,3 +1,7 @@
+open_ecoles_user:
+    resource: "@OpenEcolesUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 open_ecoles_annexe:
     resource: "@OpenEcolesAnnexeBundle/Resources/config/routing.yml"
     prefix:   /annexeDesBundles

@@ -23,7 +23,10 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
                     ->arrayNode("limitation")
                     ->children()
-                        ->scalarNode("affichage_max_tutoriel_categorie")->end()
+                        ->arrayNode("accueil")
+                        ->children()
+                            ->scalarNode("affichage_max_tutoriel_categorie")->isRequired()->end()
+                        ->end()
                     ->end()
                  ->end();
         // Here you should define the parameters that are allowed to

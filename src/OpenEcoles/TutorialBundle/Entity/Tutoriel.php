@@ -50,9 +50,8 @@ class Tutoriel
 
     /*
      *
-     * @ORM\Column(name="description", type="text")
-     */
-    //private $auteur;
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")     */
+    private $auteur;
 
     /**
      * @var DateTime

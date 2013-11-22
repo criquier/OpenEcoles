@@ -3,22 +3,23 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/rating/jquery.rating.css") }}"/>
 {% endblock %}
 
 {% block section %}
-    <article>
+    <article class=" visualisationTutoriel">
         <header>
-            <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}">Modifier le tutoriel</a><br/>
-            titre : {{ tutoriel.getTitre }}<br/>
-            <div id="star" data-number="3"></div>
-            Moyenne : {{ tutoriel.getNote }}
+            <h3>{{ tutoriel.getTitre }}<a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="crayonModifier" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="Modifier" title="Modifier" /></a></h3>
+            {{ render(controller("OpenEcolesTutorialBundle:Note:visualiserMoyenne",{ 'id':tutoriel.getId })) }}
         </header>
         <section>
             <section>
                 {{ tutoriel.getDescription|raw }}
             </section>
             <section>
-                <a href="{{ path("open_ecoles_tutorial_ajout_section",{'id':tutoriel.getId}) }}" >ajouter une section</a>
+                <header>
+                    <a href="{{ path("open_ecoles_tutorial_ajout_section",{'id':tutoriel.getId}) }}" >ajouter une section</a>
+                </header>
                 {{ render(controller("OpenEcolesTutorialBundle:Chapitre:accueil",{'id':tutoriel.getId})) }}
             </section>
         </section>
@@ -27,4 +28,38 @@
 
 {% block javascripts%}
     {{ parent() }}
+    <script src="{{ asset("bundles/openecolestutorial/rating/jquery.form.js") }}"></script>
+    <script src="{{ asset("bundles/openecolestutorial/rating/jquery.rating.js") }}"></script>
+    <script src="{{ asset("bundles/openecolestutorial/rating/jquery.MetaData.js") }}"></script>
+    <script src="{{ asset("bundles/openecolestutorial/rating/jquery.rating.pack.js") }}"></script>
+    <script type="text/javascript">
+        $("#voter").click(function(){
+            $.ajax({
+                type:"POST",
+                url: "{{ path("open_ecoles_tutorial_noter_tutoriel",{'id':tutoriel.getId}) }}",
+                data:{
+                    note:$("input:checked").val()
+                },
+                success:function(data){
+                    $("#moyenne").empty();
+                    $("#moyenne").text("Moyenne :"+data["moyenne"]);
+
+                    var div = $("#message");
+                    div.addClass("alert alert-success");
+                    div.text(data["message"]);
+                    div.fadeIn(5000);
+                    div.fadeOut(5000);
+                },
+                statusCode: {
+                    404: function(data) {
+                        var div = $("#message");
+                        div.addClass("alert alert-danger");
+                        div.text("Erreur, votre note n'a pu être prise en compte. Réessayer dans quelques instants.");
+                        div.fadeIn( 5000 );
+                        div.fadeOut(5000);
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

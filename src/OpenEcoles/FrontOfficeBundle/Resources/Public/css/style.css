@@ -17,3 +17,74 @@ section[id*="recommandation"]{
     display:inline-block;
     vertical-align: top;
 }
+
+.research{
+    vertical-align: top;
+    display: inline-block;
+    width: 40%;
+    padding-top: 1%;
+    text-align: center;
+
+}
+
+.utilisateur{
+    vertical-align: top;
+    display: inline-block;
+    width: 30%;
+    padding-top: 1.5%;
+    text-align: end;
+    color: white;
+}
+
+.button-recherche{
+    background-color: rgb(122,183,23);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    margin-top: -1.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.frontfooter{
+    width:50%;
+    margin-left:25%;
+    background-image: linear-gradient(white,black);
+    font-size: 0.8em;
+    color:white;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+section[class*="frontfooter"] > article{
+    display:inline-block;
+    width:49.5%;
+    vertical-align: top;
+}
+
+section[class*="frontfooter"]:last-child{
+    padding-right: -5%;
+
+}
+
+ul[class*="nav-pill"] > li{
+    background-color: white;
+}
+
+a{
+    color: black;
+}
+
+a: hover{
+    color: black;
+    text-decoration: none;
+}
+
+a: visited{
+    color: black;
+}
+
+li[id*="active"]{
+    background-color: rgb(36,36,36);
+    color: white;
+}

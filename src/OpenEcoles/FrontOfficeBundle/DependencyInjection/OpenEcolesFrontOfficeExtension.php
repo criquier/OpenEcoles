@@ -23,15 +23,32 @@ class OpenEcolesFrontOfficeExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $lists = $config["bundles"];
-		
-        $parametres = array();
+
+        $contenuCentral = array();
+        $menuVertical = array();
+        $menuHorizontal = array();
+
         foreach($lists as $list){
-        	$array = array("name"=>$list["name"],"menu_name"=> $list["menuname"], "accueil"=>$list["accueil"]);
+            foreach($list["menu_horizontal"] as $menuH){
+                $menuHorizontal[] = array("lien"=>$menuH["lien"],"nom"=>$menuH["nom"]);
+            }
+           foreach($list["menu_vertical"] as $menuV){
+                $menuVertical[] = array("lien"=>$menuV["lien"],"nom"=>$menuV["nom"]);
+            }
+            foreach($list["contenu_central"] as $contenuC){
+                $contenuCentral[] = array("action"=>$contenuC["render"]);
+            }
+/*        	$array = array("name"=>$list["name"],"menu_name"=> $list["menuname"], "accueil"=>$list["accueil"]);
         	$parametres[] = $array;	
-        }
-                
-        $container->setParameter("bundles",$parametres);
-		
+*/        }
+
+  //      $container->setParameter("bundles",$parametres);
+
+        $container->setParameter("menu_horizontal",$menuHorizontal);
+        $container->setParameter("menu_vertical",$menuVertical);
+        $container->setParameter("contenu_central",$contenuCentral);
+
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

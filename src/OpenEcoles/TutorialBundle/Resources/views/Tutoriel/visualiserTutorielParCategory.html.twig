@@ -1,0 +1,14 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block section %}
+    Voici toute la liste
+{% for tutoriel in tutoriels %}
+    <article>
+        <h1>{{ tutoriel.getTitre }}</h1>
+        <section>{{ tutoriel.getDescription|raw}}
+        <a href="{{ path("open_ecoles_tutorial_visualiser",{'id':tutoriel.getId})}}" >Consulter</a> </section>
+    </article>
+{% else %}
+    Il n'y a rien t'es bouché ou quoi?
+{% endfor %}
+{% endblock %}

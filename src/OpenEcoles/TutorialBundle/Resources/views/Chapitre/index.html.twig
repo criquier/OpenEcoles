@@ -1,5 +1,12 @@
 {% for chapitre in chapitres %}
     <article class="accueilChapitre">
-       <a style="color:white" href="{{ path("open_ecoles_tutorial_visualiser_section",{'id':chapitre.getId }) }}">{{ chapitre.getTitre }}</a>
+       <header>
+           <h5>
+               <a href="{{ path("open_ecoles_tutorial_visualiser_section",{'id':chapitre.getId }) }}">{{ chapitre.getTitre }}</a>
+           </h5>
+       </header>
+        <section>
+            {{ render(controller("OpenEcolesTutorialBundle:Chapitre:affichageChapitreSection",{"id":chapitre.getId}))}}
+        </section>
     </article>
 {% endfor %}

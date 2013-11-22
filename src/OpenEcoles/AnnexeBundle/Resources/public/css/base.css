@@ -3,6 +3,16 @@ body{
     height:100%;
     margin-top:0px;
     margin-left:0px;
+    background-image: linear-gradient(#66dd66, lightgrey);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+}
+
+.iconSite{
+    vertical-align: top;
+    height:25%;
+    display: inline-block;
+    width:25%;
 }
 
 .entete{
@@ -17,5 +27,8 @@ body{
 
 .copyright{
     text-align: center;
+    height:30%;
+    margin-top: 11%;
+
 }
 
