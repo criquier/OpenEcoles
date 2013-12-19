@@ -133,4 +133,4 @@ open_ecoles_tutorial:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: OpenEcole\UserBundle\Entity\User
+    user_class: OpenEcoles\UserBundle\Entity\User
