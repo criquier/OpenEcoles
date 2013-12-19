@@ -3,14 +3,14 @@
 namespace OpenEcoles\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Entity\User as BaseUser;
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="OpenEcoles\UserBundle\Entity\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
