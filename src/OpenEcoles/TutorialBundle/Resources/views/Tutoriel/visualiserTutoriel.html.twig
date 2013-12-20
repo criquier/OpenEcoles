@@ -9,7 +9,11 @@
 {% block section %}
     <article class=" visualisationTutoriel">
         <header>
-            <h3>{{ tutoriel.getTitre }}<a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="crayonModifier" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="Modifier" title="Modifier" /></a></h3>
+            <h3>{{ tutoriel.getTitre }}
+                {%  if app.user == tutoriel.getAuteur() %}
+                    <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="crayonModifier" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="Modifier" title="Modifier" /></a>
+                {% endif %}
+            </h3>
             {{ render(controller("OpenEcolesTutorialBundle:Note:visualiserMoyenne",{ 'id':tutoriel.getId })) }}
         </header>
         <section>

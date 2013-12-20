@@ -13,7 +13,9 @@
 
 
     <section style="vertical-align: top;display:inline-block;width:85%">
-        <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
+        {% if app.user is not null  %}
+            <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
+        {%  endif  %}
         <section class="defilement">
             <section class="anythingSlider">
                 <section class="wrapper">
@@ -56,10 +58,14 @@
                             </article>
                             <article class="tutoriel_info">
                                 <a  href="{{ path("open_ecoles_tutorial_visualiser",{"id":tutoriel.getId})}}" >{{ tutoriel.getTitre }}</a>
-                                {# {% if user_current == tutoriel.getUser%} #}
+                                {% if app.user == tutoriel.getAuteur() %}
                                     <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="modifierCrayon" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="modifier" title="modifier" /></a><br/>
-                                {# {% endif %} #}
-                               Personne Inconnu
+                                {% endif %}
+                                {%  if tutoriel.getAuteur() is null  %}
+                                    Personne Inconnu
+                                {%  else %}
+                                   {{  tutoriel.getAuteur() }}
+                                {% endif %}
                             </article>
                         </article>
                         {% if count >= 0 %}

@@ -4,12 +4,19 @@ namespace OpenEcoles\TutorialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use OpenEcoles\TutorialBundle\Entity\Tutoriel;
+use OpenEcoles\UserBundle\Entity\User;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
 
 /**
  * Note
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="OpenEcoles\TutorialBundle\Entity\NoteRepository")
+ *
+ *  @UniqueEntity(fields="tutoriel,user",message="Vous ne pouvez noter qu'une seule fois un tutoriel")
  */
 class Note
 {
@@ -27,11 +34,10 @@ class Note
      */
     private $tutoriel;
 
-    /*
-
-     * @ORM\Column(name="user", type="object")
-     */
-    //private $user;
+    /**
+    * @ORM\OneToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")
+    */
+    private $user;
 
     /**
      * @var float
@@ -119,5 +125,28 @@ class Note
     public function getTutoriel()
     {
         return $this->tutoriel;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \OpenEcoles\UserBundle\Entity\User $user
+     * @return Note
+     */
+    public function setUser(\OpenEcoles\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \OpenEcoles\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

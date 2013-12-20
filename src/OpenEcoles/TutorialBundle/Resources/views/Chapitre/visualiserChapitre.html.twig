@@ -9,7 +9,9 @@
     {% if unitetext.getChapitre.getParent is null %}
         <a href="{{ path("open_ecoles_tutorial_ajout_chapitre",{'id':unitetext.getChapitre.getId}) }}" >Ajouter un chapitre</a><br/>
     {% endif %}
+    {% if app.user == unitetext.getChapitre.getTutoriel.getAuteur() %}
     <a href="{{ path("open_ecoles_tutorial_modifier_chapitre",{'id':unitetext.getChapitre.getId})}}">Modifier</a><br/>
+    {% endif %}
     <article>
         <header>
             <h3>{{ unitetext.getChapitre.getTitre }}</h3>

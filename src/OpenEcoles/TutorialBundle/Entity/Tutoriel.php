@@ -4,7 +4,7 @@ namespace OpenEcoles\TutorialBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
+use \OpenEcoles\UserBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
@@ -48,9 +48,9 @@ class Tutoriel
      */
     private $description;
 
-    /*
-     *
-     * @ORM\ManyToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")     */
+    /**
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")
+     */
     private $auteur;
 
     /**
@@ -67,18 +67,9 @@ class Tutoriel
      */
     private $valide;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="note", type="integer")
-     */
-    private $note;
-
-
     public function __construct(){
         $this->valide = false;
         $this->dateCreation = new \DateTime();
-        $this->note = 0;
     }
 
     /**
@@ -207,25 +198,25 @@ class Tutoriel
     }
 
     /**
-     * Set note
+     * Set auteur
      *
-     * @param integer $note
+     * @param \OpenEcoles\UserBundle\Entity\User $auteur
      * @return Tutoriel
      */
-    public function setNote($note)
+    public function setAuteur(User $auteur = null)
     {
-        $this->note = $note;
+        $this->auteur = $auteur;
     
         return $this;
     }
 
     /**
-     * Get note
+     * Get auteur
      *
-     * @return integer 
+     * @return \OpenEcoles\UserBundle\Entity\User 
      */
-    public function getNote()
+    public function getAuteur()
     {
-        return $this->note;
+        return $this->auteur;
     }
 }

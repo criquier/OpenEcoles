@@ -26,6 +26,7 @@ class NoteController extends Controller{
             $value = $request->request->get("note");
             $note->setTutoriel($tutoriel);
             $note->setNote($value);
+            $note->setUser($this->getUser());
 
             $manager = $this->get("open_ecoles_tutorial.gestionNote");
             $manager->save($note);

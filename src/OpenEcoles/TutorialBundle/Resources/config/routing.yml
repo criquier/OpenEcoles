@@ -21,7 +21,7 @@ open_ecoles_tutorial_visualiser:
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel }
 
 open_ecoles_tutorial_visualiser_tutoriels:
-    pattern:  /voir/tutoriels
+    pattern:  /Admin/voir/tutoriels
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutorielBack }
 
 open_ecoles_tutorial_ajout:
@@ -33,11 +33,11 @@ open_ecoles_tutorial_modifier:
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:modifierTutoriel }
 
 open_ecoles_tutorial_supprimer:
-    pattern:  /supprimer/{id}
+    pattern:  /Admin/supprimer/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:supprimerTutoriel }
 
 open_ecoles_tutorial_valider:
-    pattern:  /valider/{id}
+    pattern:  /Admin/valider/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:validerTutoriel }
 
 
@@ -92,7 +92,7 @@ open_ecoles_tutorial_afficher_plus:
 #####################################
 
 open_ecoles_tutorial_categorie:
-    pattern: /categorie
+    pattern: /Admin/categorie
     defaults: {_controller:OpenEcolesTutorialBundle:Category:index}
 
 #####################################

@@ -20,7 +20,12 @@
             {% for tutoriel in tutoriels %}
                 <tr>
                     <td>{{ tutoriel.getTitre }}</td>
-                    <td>Inconnu</td>
+                    <td>{%  if tutoriel.getAuteur() is null %}
+                            Inconnu
+                        {%  else  %}
+                            {{  tutoriel.getAuteur() }}
+                        {% endif %}
+                    </td>
                     <td>
                         {% if tutoriel.getValide %}
                             oui
