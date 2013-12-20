@@ -1,6 +1,6 @@
 open_ecoles_user:
     resource: "@OpenEcolesUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 open_ecoles_annexe:
     resource: "@OpenEcolesAnnexeBundle/Resources/config/routing.yml"
@@ -8,7 +8,7 @@ open_ecoles_annexe:
 
 open_ecoles_front_office:
     resource: "@OpenEcolesFrontOfficeBundle/Resources/config/routing.yml"
-    prefix:   /Site
+    prefix:   /
 
 open_ecoles_back_office:
     resource: "@OpenEcolesBackOfficeBundle/Resources/config/routing.yml"

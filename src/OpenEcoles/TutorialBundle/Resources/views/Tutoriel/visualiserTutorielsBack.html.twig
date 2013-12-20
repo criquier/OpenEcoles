@@ -28,11 +28,12 @@
                     </td>
                     <td>
                         {% if tutoriel.getValide %}
-                            oui
+                            validé
                         {% else %}
-                            non
+                            <a href="{{ path("open_ecoles_tutorial_valider",{'id':tutoriel.getId()}) }}" >valider</a>
                         {% endif %}
                     </td>
+                    <td><a href="{{ path("open_ecoles_tutorial_supprimer",{'id':tutoriel.getId()}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
         </tbody>

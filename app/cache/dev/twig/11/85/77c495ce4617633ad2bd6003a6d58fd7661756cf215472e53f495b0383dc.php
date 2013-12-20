@@ -88,22 +88,28 @@ class __TwigTemplate_118577c495ce4617633ad2bd6003a6d58fd7661756cf215472e53f495b0
             // line 30
             if ($this->getAttribute($this->getContext($context, "tutoriel"), "getValide")) {
                 // line 31
-                echo "                            oui
+                echo "                            validé
                         ";
             } else {
                 // line 33
-                echo "                            non
+                echo "                            <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("open_ecoles_tutorial_valider", array("id" => $this->getAttribute($this->getContext($context, "tutoriel"), "getId", array(), "method"))), "html", null, true);
+                echo "\" >valider</a>
                         ";
             }
             // line 35
             echo "                    </td>
+                    <td><a href=\"";
+            // line 36
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("open_ecoles_tutorial_supprimer", array("id" => $this->getAttribute($this->getContext($context, "tutoriel"), "getId", array(), "method"))), "html", null, true);
+            echo "\">Supprimer</a></td>
                 </tr>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tutoriel'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
+        // line 39
         echo "        </tbody>
 
     </table>
@@ -111,18 +117,18 @@ class __TwigTemplate_118577c495ce4617633ad2bd6003a6d58fd7661756cf215472e53f495b0
 ";
     }
 
-    // line 44
+    // line 45
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 45
+        // line 46
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
 <script src=\"";
-        // line 46
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/openecolestutorial/datatables/jquery.dataTables.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 47
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/openecolestutorial/datatables/jquery.dataTables.min.js"), "html", null, true);
         echo "\"></script>
 <script type=\"text/javascript\">
@@ -145,6 +151,6 @@ class __TwigTemplate_118577c495ce4617633ad2bd6003a6d58fd7661756cf215472e53f495b0
 
     public function getDebugInfo()
     {
-        return array (  126 => 47,  122 => 46,  118 => 45,  115 => 44,  107 => 38,  99 => 35,  95 => 33,  91 => 31,  89 => 30,  85 => 28,  79 => 26,  75 => 24,  73 => 23,  69 => 22,  66 => 21,  62 => 20,  50 => 10,  47 => 9,  41 => 6,  37 => 5,  33 => 4,  30 => 3,);
+        return array (  132 => 48,  128 => 47,  124 => 46,  121 => 45,  113 => 39,  104 => 36,  101 => 35,  95 => 33,  91 => 31,  89 => 30,  85 => 28,  79 => 26,  75 => 24,  73 => 23,  69 => 22,  66 => 21,  62 => 20,  50 => 10,  47 => 9,  41 => 6,  37 => 5,  33 => 4,  30 => 3,);
     }
 }

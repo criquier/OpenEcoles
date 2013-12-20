@@ -64,6 +64,7 @@ class TutorielController extends Controller{
         //validation des données du formulaire
         $validation = $this->get("open_ecoles_tutorial.validationTutoriel");
         if($validation->validateTutoriel($tutoriel,$form,$request)){
+            $tutoriel->setAuteur($this->getUser());
             $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
             $manager->save($tutoriel);
             $view = $this->forward("OpenEcolesTutorialBundle:Tutoriel:accueil");
@@ -112,7 +113,7 @@ class TutorielController extends Controller{
 
         $manager->delete($tutoriel);
 
-        return new Response("ok");
+        return $this->redirect($this->generateUrl("open_ecoles_tutorial_visualiser_tutoriels"));
     }
 
     public function validerTutorielAction(Tutoriel $tutoriel){
@@ -121,7 +122,7 @@ class TutorielController extends Controller{
         $manager->validateTutoriel($tutoriel);
         $manager->save($tutoriel);
 
-        return new Response("ok");
+        return $this->redirect($this->generateUrl("open_ecoles_tutorial_visualiser_tutoriels"));
     }
 
     public function visualiserTutorielAction(Tutoriel $tutoriel){
