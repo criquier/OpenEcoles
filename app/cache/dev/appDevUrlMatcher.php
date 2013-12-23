@@ -176,6 +176,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'OpenEcoles\\TutorialBundle\\Controller\\TutorielController::backAccueilAction',  '_route' => 'open_ecoles_tutorial_back_homepage',);
             }
 
+            // open_ecoles_tutorial_top
+            if ($pathinfo === '/Tutoriel/top/tutoriel') {
+                return array (  '_controller' => 'OpenEcoles\\TutorialBundle\\Controller\\TutorielController::topTutorielAction',  '_route' => 'open_ecoles_tutorial_top',);
+            }
+
             // open_ecoles_tutorial_visualiser
             if (0 === strpos($pathinfo, '/Tutoriel/voir/tutoriel') && preg_match('#^/Tutoriel/voir/tutoriel/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'open_ecoles_tutorial_visualiser')), array (  '_controller' => 'OpenEcoles\\TutorialBundle\\Controller\\TutorielController::visualiserTutorielAction',));

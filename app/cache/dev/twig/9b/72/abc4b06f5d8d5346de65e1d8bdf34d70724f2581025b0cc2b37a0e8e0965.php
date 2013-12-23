@@ -38,16 +38,20 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
     ";
         }
         // line 7
-        echo "    <form action=\"";
+        echo "    <a href=\"";
+        echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
+        echo "\" style=\"color:white\" >s'inscrire</a> |
+    <form action=\"";
+        // line 8
         echo $this->env->getExtension('routing')->getPath("fos_user_security_check");
         echo "\" method=\"post\">
         <input type=\"hidden\" name=\"_csrf_token\" value=\"";
-        // line 8
+        // line 9
         echo twig_escape_filter($this->env, $this->getContext($context, "csrf_token"), "html", null, true);
         echo "\" />
 
         <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 10
+        // line 11
         echo twig_escape_filter($this->env, $this->getContext($context, "last_username"), "html", null, true);
         echo "\" required=\"required\" />
         <input type=\"password\" id=\"password\" name=\"_password\" required=\"required\" />
@@ -56,7 +60,7 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
 ";
     }
 
-    // line 16
+    // line 17
     public function block_body($context, array $blocks = array())
     {
     }
@@ -73,6 +77,6 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
 
     public function getDebugInfo()
     {
-        return array (  60 => 16,  51 => 10,  46 => 8,  41 => 7,  35 => 5,  32 => 4,  29 => 3,);
+        return array (  64 => 17,  55 => 11,  50 => 9,  46 => 8,  41 => 7,  35 => 5,  32 => 4,  29 => 3,);
     }
 }

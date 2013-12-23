@@ -16,6 +16,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                default_target_path: /
             logout:       true
             anonymous:    true
 
@@ -25,5 +26,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/Tutoriel, role: ROLE_USER }
         - { path: ^/Tutoriel/Admin, role: ROLE_ADMIN }
-        - { path: ^/Site, role: ROLE_USER }
+        - { path: ^/, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }

@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AccueilController extends Controller
 {
     public function indexAction(){
+        $parametres = $this->container->getParameter("contenu_central");
         return $this->render('OpenEcolesFrontOfficeBundle:Accueil:index.html.twig', array(
+            "contenus" => $parametres,
         ));
     }
 

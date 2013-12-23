@@ -102,7 +102,18 @@ stfalcon_tinymce:
 
 open_ecoles_front_office:
     bundles:
-        bundletutoriel:
+         bundleuser:
+              parametre:
+                  name: "User"
+              menu_horizontal:
+              menu_vertical:
+                  element1:
+                      lien: "fos_user_profile_show"
+                      nom: "Mon profil"
+              contenu_central:
+                  element1:
+                      render: ""
+         bundletutoriel:
             parametre:
                 name: "Tutoriel"
             menu_horizontal:
@@ -115,7 +126,8 @@ open_ecoles_front_office:
                     nom: "Mes documents"
             contenu_central:
                 element1:
-                    render: ""
+                    render: "OpenEcolesTutorialBundle:Tutoriel:topTutoriel"
+
 
 open_ecoles_back_office:
     backbundles:

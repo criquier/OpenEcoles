@@ -16,6 +16,11 @@ open_ecoles_tutorial_back_homepage:
     pattern:  /Admin
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:backAccueil }
 
+open_ecoles_tutorial_top:
+    pattern:  /top/tutoriel
+    defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:topTutoriel }
+
+
 open_ecoles_tutorial_visualiser:
     pattern:  /voir/tutoriel/{id}
     defaults: { _controller: OpenEcolesTutorialBundle:Tutoriel:visualiserTutoriel }

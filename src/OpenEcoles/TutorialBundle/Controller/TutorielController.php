@@ -139,6 +139,18 @@ class TutorielController extends Controller{
         ));
     }
 
+    public function topTutoriel(){
+        $managerTuto = $this->get("open_ecoles_tutorial.gestionTutoriel");
+        $tutoriels = $managerTuto->getAllValidateTutorial();
+
+        $managerNote = $this->get("open_ecoles_tutorial.gestionNote");
+        $top = $managerNote->getTopTutoriel($tutoriels,3);
+
+        return $this->render("OpenEcolesTutorialBundle:Tutoriel:topTutoriel.html.twig",array(
+            "tutoriels"> $top
+        ));
+    }
+
     public function mesDocumentsAction(){
         $manager = $this->get("open_ecoles_tutorial.gestionTutoriel");
         $tutoriels = $manager->getAllTutoriel();

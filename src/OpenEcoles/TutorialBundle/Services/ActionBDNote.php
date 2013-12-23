@@ -10,14 +10,15 @@ use OpenEcoles\TutorialBundle\Entity\Note;
 class ActionBDNote{
 
     private $em;
+    private $note_repository;
 
     public function __construct(EntityManager $em){
         $this->em = $em;
+        $this->note_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Note");
     }
 
     public function getMoyenneByTutoriel(Tutoriel $tutoriel){
-        $notes_repository = $this->em->getRepository("OpenEcolesTutorialBundle:Note");
-        $notes = $notes_repository->findByTutoriel($tutoriel);
+        $notes = $this->notes_repository->findByTutoriel($tutoriel);
         $moyenne = 0;
         if(count($notes) > 0 ){
             foreach($notes as $note){
@@ -29,6 +30,23 @@ class ActionBDNote{
             $moyenne = 2.5;
         }
         return number_format($moyenne,2);
+    }
+
+    public function getTopTutoriel($tutoriels ,$limit){
+        $top = array();
+        foreach($tutoriels as $tutoriel){
+            if(count($top) < $limit){
+                $top[]= $tutoriel;
+            }
+            elseif(count($top) == $limit){
+                $moyenneTutoCourant = $this->getMoyenneByTutoriel($tutoriel);
+                foreach($top as $key=>$topTuto ){
+                    if($moyenneTutoCourant > $this->getMoyenneByTutoriel($topTuto)){
+                        $top[$key] = $tutoriel;
+                    }
+                }
+            }
+        }
     }
 
     public function save(Note $note){

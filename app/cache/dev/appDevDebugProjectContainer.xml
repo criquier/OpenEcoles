@@ -493,6 +493,10 @@
     </parameter>
     <parameter key="menu_vertical" type="collection">
       <parameter type="collection">
+        <parameter key="lien">fos_user_profile_show</parameter>
+        <parameter key="nom">Mon profil</parameter>
+      </parameter>
+      <parameter type="collection">
         <parameter key="lien">open_ecoles_tutorial_mes_documents</parameter>
         <parameter key="nom">Mes documents</parameter>
       </parameter>
@@ -500,6 +504,9 @@
     <parameter key="contenu_central" type="collection">
       <parameter type="collection">
         <parameter key="action"></parameter>
+      </parameter>
+      <parameter type="collection">
+        <parameter key="action">OpenEcolesTutorialBundle:Tutoriel:topTutoriel</parameter>
       </parameter>
     </parameter>
     <parameter key="affichage_max_tutorial_par_categorie">3</parameter>
@@ -1686,7 +1693,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52b428fb483dd</argument>
+            <argument>52b4c13013190</argument>
           </service>
         </argument>
       </argument>
@@ -1843,7 +1850,7 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/Site</argument>
+                      <argument>^/</argument>
                     </service>
                   </argument>
                   <argument type="collection">
@@ -1938,8 +1945,8 @@
                   </service>
                 </argument>
                 <argument type="collection">
-                  <argument key="always_use_default_target_path">false</argument>
                   <argument key="default_target_path">/</argument>
+                  <argument key="always_use_default_target_path">false</argument>
                   <argument key="login_path">/login</argument>
                   <argument key="target_path_parameter">_target_path</argument>
                   <argument key="use_referer">false</argument>
@@ -1985,7 +1992,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52b428fb483dd</argument>
+            <argument>52b4c13013190</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2054,7 +2061,7 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/Site</argument>
+                      <argument>^/</argument>
                     </service>
                   </argument>
                   <argument type="collection">

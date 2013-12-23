@@ -21,6 +21,16 @@ class User extends BaseUser
     protected $id;
 
 
+    /*
+     *
+     */
+
+    /*
+     * @var integer
+     * @ORM\Column(name="pi", type="integer")
+     */
+//    protected $PI;
+
     /**
      * Get id
      *
