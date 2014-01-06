@@ -25,38 +25,40 @@
 {% endblock %}
 
 {% block body %}
-<section style="margin-top: 1%;">
-    <nav>
-        {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
-    </nav>
-    <section id="content">
-        <nav id="menu">
-            {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale")) }}
 
+    <!-- Le corps de la page -->
+    <div class="conteneur">
+
+        <nav>
+            {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
         </nav>
-        {%block section%}
-        {%endblock%}
-    </section>
-    {% block recommandation %}
-        <section id="recommandation">
-                Syst&egrave;me de recommandation
+        <!-- L'espace personnel -->
+        <section class ="espace_personnel">
+            <nav id="menu">
+                {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale")) }}
+            </nav>
         </section>
-    {% endblock %}
-</section>
 
-<aside>
-</aside>
+        <!-- Le contenu du site pour l'utilisateur -->
+        <section class ="content">
+            <p style="text-align: center">Bienvenue sur le site Open Ecole - Contenu du site (aggrandissement automatique afin d'eviter les 300px-450px etc etc</p>
+        </section>
+
+        <!-- le systeme de recommandation -->
+        {% block recommandation %}
+        <section class ="systeme_de_recommandation">
+            <p>Syst&egrave;me de recommandation !</p>
+        </section>
+        {% endblock %}
+    </div>
+
 {% endblock %}
 
 {% block footer %}
-<section class="frontfooter">
-    <article>
-        Qui sommes nous? | conditions d'utiiations | partenaires | contact
-    </article>
-    <article>
-        &reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
-    </article>
-</section>
+        <p class="frontfooter">
+            <a href="#">Qui sommes nous </a> | <a href="#">conditions d'utilisation</a> | <a href="#">partenaires</a> | <a href="#">contact</a>
+            <br/>&reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
+        </p>
 {% endblock %}
 
 {% block javascripts %}
