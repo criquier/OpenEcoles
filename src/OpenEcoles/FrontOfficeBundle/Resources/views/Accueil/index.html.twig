@@ -6,16 +6,21 @@
 {% endblock %}
 
 {% block entete %}
+
     <section class="research">
         <div class="input-group">
-            <span class="input-group-addon" style='color:white;background-color: rgb(122,183,23)'>search:</span>
-            <input type="text" class="form-control">
-            <input type="button" value="recherche" class="button-recherche"/>
+            <input type="text" placeholder="Votre recherche" class="form-control">
+            <input type="button" value="Rechercher" class="button-recherche"/>
         </div>
-
     </section>
+
     <section class="utilisateur">
-        {{ app.user.username }} <a href="#" class="déploiment">+</a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                Bienvenue {{ app.user.username }}<a href="#" class="déploiment"> + </a> <br/><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">Se Connecter</a>
+            {% endif %}
+
     </section>
 {% endblock %}
 

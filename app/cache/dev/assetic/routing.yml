@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/config/routing_dev.yml'
+    resource: 'C:/wamp/www/OpenEcoles/app/config/routing_dev.yml'

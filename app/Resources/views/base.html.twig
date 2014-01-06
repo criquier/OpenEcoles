@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}OpenEcoles{% endblock %}</title>
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/css/base.css") }}"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
         <!-- bootstrap -->
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap.css") }}"/>
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap.min.css") }}"/>       
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.css") }}"/>
-        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.min.css") }}"/>       
-        
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.min.css") }}"/>
+
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/transition.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/collapse.js") }}" ></script>
+
+        {% block javascripts %}{% endblock %}
 		{% block stylesheets %}{% endblock %}
-        
-		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
     </head>
+
     <body>
-        <header class="entete">
-            <section class="iconSite">
+
+        <header>
+            <aside class="iconSite">
                 <img src="{{ asset("bundles/openecolesannexe/images/logo.png") }}" class="positionLogo" alt="OpenEcoles" title="OpenEcoles" />
-            </section>
+            </aside>
             {% block entete %}
             {% endblock %}
         </header>
+
         {% block body %}{% endblock %}
-        <footer class="copyright">
+
+        <footer>
             {% block footer %}
             {% endblock %}
         </footer>
-        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
-		<script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>
-		<script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/transition.js") }}" ></script>
-		<script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/collapse.js") }}" ></script>
-		
-		{% block javascripts %}{% endblock %}
+
     </body>
 </html>
