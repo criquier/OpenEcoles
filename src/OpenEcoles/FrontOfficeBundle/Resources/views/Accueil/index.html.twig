@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesfrontoffice/css/style.css") }}"/>
 {% endblock %}
 
+{% block javascripts %}
+{% endblock %}
+
 {% block entete %}
 
     <section class="research">
@@ -16,12 +19,13 @@
 
     <section class="utilisateur">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                Bienvenue {{ app.user.username }}<a href="#" class="déploiment"> + </a> <br/><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+                <p class="nom_utilisateur">Bienvenue {{ app.user.username }}<a href="#" class="déploiment"> + </a> </p>
+                <p><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></p>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}">Se Connecter</a>
+                <p><a href="{{ path('fos_user_security_login') }}">Se Connecter</a></p>
             {% endif %}
-
     </section>
+
 {% endblock %}
 
 {% block body %}
@@ -32,6 +36,7 @@
         <nav>
             {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
         </nav>
+
         <!-- L'espace personnel -->
         <section class ="espace_personnel">
             <nav id="menu">
@@ -50,16 +55,14 @@
             <p>Syst&egrave;me de recommandation !</p>
         </section>
         {% endblock %}
+
     </div>
 
 {% endblock %}
 
 {% block footer %}
-        <p class="frontfooter">
-            <a href="#">Qui sommes nous </a> | <a href="#">conditions d'utilisation</a> | <a href="#">partenaires</a> | <a href="#">contact</a>
-            <br/>&reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
-        </p>
-{% endblock %}
-
-{% block javascripts %}
+    <p class="frontfooter">
+        <a href="#">Qui sommes nous </a> | <a href="#">conditions d'utilisation</a> | <a href="#">partenaires</a> | <a href="#">contact</a>
+        <br/>&reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
+    </p>
 {% endblock %}
