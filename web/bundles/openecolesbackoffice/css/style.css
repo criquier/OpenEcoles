@@ -1,0 +1,11 @@
+section[id*="menu"]{
+    vertical-align: top;
+    display:inline-block;
+    width:12%;
+}
+
+section[id*="corps"]{
+    vertical-align: top;
+    display:inline-block;
+    width:50%;
+}

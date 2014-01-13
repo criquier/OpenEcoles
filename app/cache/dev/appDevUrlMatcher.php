@@ -133,6 +133,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // open_ecoles_open_annonces_homepage
+        if (rtrim($pathinfo, '/') === '/OpenAnnonces') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'open_ecoles_open_annonces_homepage');
+            }
+
+            return array (  '_controller' => 'OpenEcoles\\OpenAnnoncesBundle\\Controller\\OpenAnnoncesController::indexAction',  '_route' => 'open_ecoles_open_annonces_homepage',);
+        }
+
         // open_ecoles_user_homepage
         if (0 === strpos($pathinfo, '/user/hello') && preg_match('#^/user/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'open_ecoles_user_homepage')), array (  '_controller' => 'OpenEcoles\\UserBundle\\Controller\\DefaultController::indexAction',));

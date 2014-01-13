@@ -23,6 +23,7 @@
       <parameter key="StfalconTinymceBundle">Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle</parameter>
       <parameter key="OpenEcolesUserBundle">OpenEcoles\UserBundle\OpenEcolesUserBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="OpenEcolesOpenAnnoncesBundle">OpenEcoles\OpenAnnoncesBundle\OpenEcolesOpenAnnoncesBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -1684,7 +1685,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52cac2d9b3b51</argument>
+            <argument>52cec66b7bb09</argument>
           </service>
         </argument>
       </argument>
@@ -1983,7 +1984,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52cac2d9b3b51</argument>
+            <argument>52cec66b7bb09</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3066,6 +3067,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\OpenEcoles\vendor\friendsofsymfony\user-bundle\FOS\UserBundle/Resources/views</argument>
         <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\OpenEcoles\src\OpenEcoles\OpenAnnoncesBundle/Resources/views</argument>
+        <argument>OpenEcolesOpenAnnonces</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\OpenEcoles\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>

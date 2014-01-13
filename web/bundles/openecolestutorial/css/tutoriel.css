@@ -1,0 +1,95 @@
+@CHARSET "ISO-8859-1";
+
+a:hover{
+    text-decoration: none;
+    color: #7AB717;
+}
+
+article[class*="category"]{
+    width: 30%;
+    margin-left: 1%;
+    margin-right: 1%;
+    display:inline-block;
+    background-color: white;
+    border:1px solid black;
+    margin-bottom:2%;
+    vertical-align: top;
+}
+article > header > h3{
+    text-align: center;
+}
+
+article[class*="tutoriel"]{
+	background-color: white;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 4%;
+}
+
+article[class*="accueilChapitre"]{
+    background-color: #fefefe;
+    width:30%;
+    margin-left: 5%;
+    margin-top:0.5%;
+    margin-bottom:0.5%;
+    color:black;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 5%;
+    vertical-align: top;
+    display:inline-block;
+    border: 1px solid black;
+}
+
+footer[class="afficher_plus"]{
+    background-color: rgb(122,183,23);
+    color:white;
+    width:60%;
+    margin-left:40%;
+    -moz-border-radius-topleft: 15px;
+    text-align:center;
+}
+
+.creationModifier{
+    width:50%;
+    height:50%;
+}
+
+.defilement{
+    width:75%;
+    height:15%;
+    background-color:#f0f0f0;
+}
+
+.illustration_min{
+}
+
+.trait{
+    border: 1px solid #e0e0dd;
+    width:80%;
+    margin-left: 10%;
+}
+
+.tutoriel_illustration{
+    display: inline-block;
+    vertical-align: top;
+    width:25%;
+}
+
+.modifierCrayon{
+    width:10%;
+    height:10%;
+}
+
+.tutoriel_info{
+    display: inline-block;
+    vertical-align: top;
+    width:60%;
+    padding-top: 5%;
+}
+
+.visualisationTutoriel{
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 5%;
+}

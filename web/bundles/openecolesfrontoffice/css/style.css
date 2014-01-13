@@ -1,0 +1,98 @@
+/** Page CSS du Site Open Ecole.
+*   Cette page contient le CSS de la page index.html
+*   écrit en HTML5.
+**/
+
+/********* Les boites du site OpenEcole *********/
+.conteneur{
+    height: auto;
+    width: auto;
+    margin: 10px 10px 10px 10px;
+}
+.espace_personnel{
+    background: lightblue;
+    float: left;
+    width: auto;
+    height: 100px;
+}
+.content{
+    background: khaki;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+    height: 100px;
+}
+.systeme_de_recommandation{
+    background: burlywood;
+    float: right;
+    width: auto;
+    height: 100px;
+
+}
+
+/********* Les menu et barre de navigations *********/
+nav[id="menu"]{
+    width:100%;
+    display: inline-block;
+}
+
+/********* L'entête  *********/
+.research{
+    display: inline-block;
+    width: 40%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.button-recherche{
+    background-color: rgb(122,183,23);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    margin-top: -1.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.utilisateur{
+    display: inline-block;
+    width: 30%;
+    padding-top: 1.5%;
+    text-align: end;
+    color: white;
+}
+.nom_utilisateur{
+    font-size: 18px;
+}
+.utilisateur > p > a{
+    color: #ffffff;
+}
+.utilisateur > p > a:hover{
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/********* Le pied de page *********/
+.frontfooter{
+    padding-top: 1.5%;
+    font-size: 0.8em;
+    color:white;
+    text-align: center;
+}
+.frontfooter > a{
+    color:white;
+}
+.frontfooter > a:hover{
+    color:white;
+    text-decoration: underline;
+}
+
+/********* Les balises diverses *********/
+ul[class*="nav-pill"] > li{
+    background-color: white;
+}
+li[id*="active"]{
+    background-color: rgb(36,36,36);
+    color: white;
+}

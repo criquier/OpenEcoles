@@ -1,0 +1,7 @@
+parameters:
+#    open_ecoles_open_annonces.example.class: OpenEcoles\OpenAnnoncesBundle\Example
+
+services:
+#    open_ecoles_open_annonces.example:
+#        class: %open_ecoles_open_annonces.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
