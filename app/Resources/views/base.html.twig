@@ -1,0 +1,47 @@
+<!--
+    Page "Base.html", cette page est la page mére qui contient les principales balises de tous les pages du site OpenEcole.
+-->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}OpenEcoles{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/css/base.css") }}"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap.css") }}"/>
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap.min.css") }}"/>       
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.css") }}"/>
+        <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.min.css") }}"/>
+
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/transition.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/collapse.js") }}" ></script>
+
+        {% block javascripts %}{% endblock %}
+		{% block stylesheets %}{% endblock %}
+
+    </head>
+
+    <body>
+
+        <header class="entete">
+            <aside class="iconSite">
+                <img src="{{ asset("bundles/openecolesannexe/images/logo.png") }}" class="positionLogo" alt="OpenEcoles" title="OpenEcoles" />
+            </aside>
+            {% block entete %}
+            {% endblock %}
+        </header>
+
+        {% block body %}{% endblock %}
+
+        <footer>
+            {% block footer %}
+            {% endblock %}
+        </footer>
+
+    </body>
+</html>
