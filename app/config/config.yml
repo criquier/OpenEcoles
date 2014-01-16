@@ -110,23 +110,27 @@ open_ecoles_front_office:
                   element1:
                       lien: "fos_user_profile_show"
                       nom: "Mon profil"
+                  element2:
+                      lien: "open_ecoles_tutorial_homepage"
+                      nom: "Mes messages"
               contenu_central:
                   element1:
                       render: ""
          bundletutoriel:
-            parametre:
-                name: "Tutoriel"
-            menu_horizontal:
-                element1:
-                    lien: "open_ecoles_tutorial_homepage"
-                    nom: "Tutoriel"
-            menu_vertical:
-                element1:
-                    lien: "open_ecoles_tutorial_mes_documents"
-                    nom: "Mes documents"
-            contenu_central:
-                element1:
-                    render: "OpenEcolesTutorialBundle:Tutoriel:topTutoriel"
+              parametre:
+                  name: "Tutoriel"
+              menu_horizontal:
+                  element1:
+                      lien: "open_ecoles_tutorial_homepage"
+                      nom: "Tutoriel"
+              menu_vertical:
+                  element1:
+                      lien: "open_ecoles_tutorial_mes_documents"
+                      nom: "Mes documents"
+              contenu_central:
+                  element1:
+                      render: "OpenEcolesTutorialBundle:Tutoriel:topTutoriel"
+
 
 
 open_ecoles_back_office:

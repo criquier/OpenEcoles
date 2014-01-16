@@ -31,7 +31,7 @@
         {%block section%}
             {% for contenu in contenus %}
                 <section>
-                    {{ render(controller(contenu["action"])) }}
+                    {# {{  render(controller(contenu["action"])) }}#}
                 </section>
             {% endfor %}
         {%endblock%}

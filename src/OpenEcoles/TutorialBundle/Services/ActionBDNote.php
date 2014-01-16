@@ -18,7 +18,7 @@ class ActionBDNote{
     }
 
     public function getMoyenneByTutoriel(Tutoriel $tutoriel){
-        $notes = $this->notes_repository->findByTutoriel($tutoriel);
+        $notes = $this->note_repository->findByTutoriel($tutoriel);
         $moyenne = 0;
         if(count($notes) > 0 ){
             foreach($notes as $note){
