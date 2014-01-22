@@ -16,12 +16,6 @@
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.css") }}"/>
         <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesannexe/bootstrap/css/bootstrap-responsive.min.css") }}"/>
 
-        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
-        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>
-        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/transition.js") }}" ></script>
-        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/collapse.js") }}" ></script>
-
-        {% block javascripts %}{% endblock %}
 		{% block stylesheets %}{% endblock %}
 
     </head>
@@ -42,6 +36,13 @@
             {% block footer %}
             {% endblock %}
         </footer>
+
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/jquery/jquery.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/bootstrap.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/transition.js") }}" ></script>
+        <script type="text/javascript" src="{{ asset("bundles/openecolesannexe/bootstrap/js/collapse.js") }}" ></script>
+
+        {% block javascripts %}{% endblock %}
 
     </body>
 </html>

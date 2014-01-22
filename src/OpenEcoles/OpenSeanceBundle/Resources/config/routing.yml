@@ -1,0 +1,3 @@
+open_ecoles_open_seance_homepage:
+    pattern:  /admin/creation
+    defaults: { _controller: OpenEcolesOpenSeanceBundle:GestionOpenSeance:accueil }

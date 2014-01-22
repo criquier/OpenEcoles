@@ -1,0 +1,53 @@
+open_ecoles_open_seance:
+    resource: "@OpenEcolesOpenSeanceBundle/Resources/config/routing.yml"
+    prefix:   /OpenSeances
+
+open_ecoles_open_annonces:
+    resource: "@OpenEcolesOpenAnnoncesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+open_annonces:
+    resource: "@OpenEcolesOpenAnnoncesBundle/Resources/config/routing.yml"
+    prefix:   /OpenAnnonces
+
+open_ecoles_user:
+    resource: "@OpenEcolesUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+open_ecoles_annexe:
+    resource: "@OpenEcolesAnnexeBundle/Resources/config/routing.yml"
+    prefix:   /annexeDesBundles
+
+open_ecoles_front_office:
+    resource: "@OpenEcolesFrontOfficeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+open_ecoles_back_office:
+    resource: "@OpenEcolesBackOfficeBundle/Resources/config/routing.yml"
+    prefix:   /Admin
+
+open_ecoles_tutorial:
+    resource: "@OpenEcolesTutorialBundle/Resources/config/routing.yml"
+    prefix:   /Tutoriel
+
+##############################
+#user bundle
+##############################
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

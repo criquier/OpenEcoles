@@ -11,12 +11,12 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
 
         $this->blocks = array(
             'stylesheets' => array($this, 'block_stylesheets'),
-            'javascripts' => array($this, 'block_javascripts'),
             'entete' => array($this, 'block_entete'),
             'body' => array($this, 'block_body'),
             'section' => array($this, 'block_section'),
             'recommandation' => array($this, 'block_recommandation'),
             'footer' => array($this, 'block_footer'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -45,14 +45,9 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
     }
 
     // line 8
-    public function block_javascripts($context, array $blocks = array())
-    {
-    }
-
-    // line 11
     public function block_entete($context, array $blocks = array())
     {
-        // line 12
+        // line 9
         echo "
     <section class=\"research\">
         <div class=\"input-group\">
@@ -63,7 +58,7 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
 
     <section class=\"utilisateur\">
         ";
-        // line 21
+        // line 18
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
         echo " <a href=\"";
         echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
@@ -73,33 +68,33 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
 ";
     }
 
-    // line 26
+    // line 23
     public function block_body($context, array $blocks = array())
     {
-        // line 27
+        // line 24
         echo "<section style=\"margin-top: 1%;\">
     <nav>
         ";
-        // line 29
+        // line 26
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale"));
         echo "
     </nav>
     <section id=\"content\">
         <nav id=\"menu\">
             ";
-        // line 33
+        // line 30
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale"));
         echo "
         </nav>
         ";
-        // line 35
+        // line 32
         $this->displayBlock('section', $context, $blocks);
-        // line 42
+        // line 39
         echo "    </section>
     ";
-        // line 43
+        // line 40
         $this->displayBlock('recommandation', $context, $blocks);
-        // line 48
+        // line 45
         echo "
 
     <!--
@@ -108,7 +103,7 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
 
         <nav>
             ";
-        // line 55
+        // line 52
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale"));
         echo "
         </nav>
@@ -116,7 +111,7 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
         <section class =\"espace_personnel\">
             <nav id=\"menu\">
                 ";
-        // line 60
+        // line 57
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale"));
         echo "
             </nav>
@@ -127,7 +122,7 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
         </section>
 
         ";
-        // line 73
+        // line 70
         echo "
     </div>
     -->
@@ -136,47 +131,52 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
             ";
     }
 
-    // line 35
+    // line 32
     public function block_section($context, array $blocks = array())
     {
-        // line 36
+        // line 33
         echo "            ";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, "contenus"));
         foreach ($context['_seq'] as $context["_key"] => $context["contenu"]) {
-            // line 37
+            // line 34
             echo "                <section>
                     ";
-            // line 39
+            // line 36
             echo "                </section>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['contenu'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 41
+        // line 38
         echo "        ";
     }
 
-    // line 43
+    // line 40
     public function block_recommandation($context, array $blocks = array())
     {
-        // line 44
+        // line 41
         echo "        <section id=\"recommandation\">
                 Syst&egrave;me de recommandation
         </section>
     ";
     }
 
-    // line 80
+    // line 77
     public function block_footer($context, array $blocks = array())
     {
-        // line 81
+        // line 78
         echo "    <p class=\"frontfooter\">
         <a href=\"#\">Qui sommes nous </a> | <a href=\"#\">conditions d'utilisation</a> | <a href=\"#\">partenaires</a> | <a href=\"#\">contact</a>
         <br/>&reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
     </p>
 ";
+    }
+
+    // line 84
+    public function block_javascripts($context, array $blocks = array())
+    {
     }
 
     public function getTemplateName()
@@ -191,6 +191,6 @@ class __TwigTemplate_dd728ffa2628bd12db2e25dcb89468afe61352d537638fa93d46f9ec5df
 
     public function getDebugInfo()
     {
-        return array (  175 => 81,  172 => 80,  165 => 44,  162 => 43,  158 => 41,  151 => 39,  148 => 37,  143 => 36,  140 => 35,  131 => 73,  120 => 60,  112 => 55,  103 => 48,  101 => 43,  98 => 42,  96 => 35,  91 => 33,  84 => 29,  80 => 27,  77 => 26,  67 => 21,  56 => 12,  53 => 11,  48 => 8,  42 => 5,  37 => 4,  34 => 3,);
+        return array (  178 => 84,  170 => 78,  167 => 77,  160 => 41,  157 => 40,  153 => 38,  146 => 36,  143 => 34,  138 => 33,  135 => 32,  126 => 70,  115 => 57,  107 => 52,  98 => 45,  96 => 40,  93 => 39,  91 => 32,  86 => 30,  79 => 26,  75 => 24,  72 => 23,  62 => 18,  51 => 9,  48 => 8,  42 => 5,  37 => 4,  34 => 3,);
     }
 }
