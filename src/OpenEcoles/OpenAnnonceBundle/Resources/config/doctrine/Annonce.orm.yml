@@ -1,0 +1,23 @@
+OpenEcoles\OpenAnnonceBundle\Entity\Annonce:
+    type: entity
+    table: null
+    repositoryClass: OpenEcoles\OpenAnnonceBundle\Entity\AnnonceRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        titre:
+            type: string
+            length: 255
+        contenu:
+            type: string
+            length: 255
+        dateCreation:
+            type: date
+            column: date_creation
+        idAuteur:
+            type: integer
+            column: id_auteur
+    lifecycleCallbacks: {  }
