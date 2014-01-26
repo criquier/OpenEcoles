@@ -24,5 +24,7 @@ services:
 
  #Service permettant de gerer les envoies de messages
     OpenEcoles_user.gestionEnvoieMessages:
-        class: OpenEcoles\UserBundle\Services\MessageListener
-        arguments: [@OpenEcoles_user.gestionBDMessages,@OpenEcoles_user.gestionBDUsers]
+        class: OpenEcoles\UserBundle\Services\MessageListenerService
+        arguments: [@OpenEcoles_user.gestionBDMessages, @OpenEcoles_user.gestionBDUsers]
+        tags:
+            - { name: kernel.event_listener, event: openecolesuser.gestionnaireutilisateur.post_message, method: onMessagePost }

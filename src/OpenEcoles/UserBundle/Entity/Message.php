@@ -36,9 +36,8 @@ class Message
     private $contenu;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="auteur", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $auteur; // La personne ayant redigé le message
 
@@ -59,7 +58,8 @@ class Message
      */
     public function __construct()
     {
-        $this->date         = new \Datetime;
+        $this->date= new \Datetime;
+        $this->lu=false;
     }
     /**
      * Get id
@@ -146,10 +146,9 @@ class Message
      * @param \OpenEcoles\UserBundle\Entity\User $destinataire
      * @return Message
      */
-    public function setDestinataire(\OpenEcoles\UserBundle\Entity\User $destinataire)
+    public function setDestinataire($destinataire)
     {
         $this->destinataire = $destinataire;
-        $destinataire->addMessage($this);
     
         return $this;
     }

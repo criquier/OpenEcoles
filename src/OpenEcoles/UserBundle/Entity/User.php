@@ -25,7 +25,12 @@ class User extends BaseUser
     private $messages; // Listes des messages reçus
 
     /**
-     * @ORM\Column(name="nbNouveauxMessages", type="integer")
+     * @ORM\OneToMany(targetEntity="OpenEcoles\UserBundle\Entity\Message", mappedBy="auteur")
+     */
+    private $envoyes; // Listes des messages envoyés
+
+    /**
+     * @ORM\Column(name="nbNouveauxMessages", type="integer", nullable=true)
      */
     private $nbNouveauxMessages;
 
@@ -102,5 +107,38 @@ class User extends BaseUser
     public function getNbNouveauxMessages()
     {
         return $this->nbNouveauxMessages;
+    }
+
+    /**
+     * Add envoyes
+     *
+     * @param \OpenEcoles\UserBundle\Entity\Message $envoyes
+     * @return User
+     */
+    public function addEnvoye(\OpenEcoles\UserBundle\Entity\Message $envoyes)
+    {
+        $this->envoyes[] = $envoyes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove envoyes
+     *
+     * @param \OpenEcoles\UserBundle\Entity\Message $envoyes
+     */
+    public function removeEnvoye(\OpenEcoles\UserBundle\Entity\Message $envoyes)
+    {
+        $this->envoyes->removeElement($envoyes);
+    }
+
+    /**
+     * Get envoyes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEnvoyes()
+    {
+        return $this->envoyes;
     }
 }

@@ -1,0 +1,9 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+{% endblock %}
+{% block section %}
+{{ message.contenu }}   {{ message.date }} {{ message.auteur.username }} {{ message.destinataire.username }}
+{% endblock %}

@@ -5,39 +5,39 @@
     <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
 {% endblock %}
 {% block section %}
-    <h6>Liste des messages reçus</h6>
+    <h6>Liste des messages reçus par {{ app.user.username }}</h6>
+    {#On affiche la liste des messages de l'utilisateur#}
+
+    {% for message in messages %}
+        <p>{{ message.date|date('d/m/Y H:i:s')}}"   "
+            <a href="{{ path("open_ecoles_user_conversation_messsage",
+            {'idauteur':app.user.id, 'iddestinataire': message.auteur.id }) }}">
+                {{ message.auteur.username}}</a>"   "
+            {{ message.contenu}}
+        </p>
+
+    {% else %}
+        <p>Votre boite de reception est vide</p>
+    {% endfor %}
     {# {% include "OpenEcolesUserBundle:Message:formulaire.html.twig" %} #}
 {% endblock %}
 
 {% block javascripts%}
     {{ parent() }}
     <script type="text/javascript">
-        $("#voter").click(function(){
+        $("#detailmessage").click(function(){
             $.ajax({
                 type:"POST",
-                url: "{{ path("open_ecoles_user_envoie_messsage",{'id':1}) }}",
+            {# url: "{{ path("open_ecoles_user_conversation_messsage",{'idauteur':user.id }) }}",#}
                 data:{
-                    note:$("input:checked").val()
+                    //'idauteur':{{ user.id }}
+
                 },
                 success:function(data){
-                    $("#moyenne").empty();
-                    $("#moyenne").text("Moyenne :"+data["moyenne"]);
-
-                    var div = $("#message");
-                    div.addClass("alert alert-success");
-                    div.text(data["message"]);
-                    div.fadeIn(5000);
-                    div.fadeOut(5000);
+                    $('sel').load('visualiserConversation.html.twig');//,{ id:50, nom: 'durand'});
                 },
-                statusCode: {
-                    404: function(data) {
-                        var div = $("#message");
-                        div.addClass("alert alert-danger");
-                        div.text("Erreur, votre note n'a pu être prise en compte. Réessayer dans quelques instants.");
-                        div.fadeIn( 5000 );
-                        div.fadeOut(5000);
-                    }
-                }
+                error: function() {
+                    alert('La requête n\'a pas abouti'); }
             });
         });
     </script>

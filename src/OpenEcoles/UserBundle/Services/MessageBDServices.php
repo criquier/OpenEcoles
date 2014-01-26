@@ -22,8 +22,25 @@ class MessageBDServices {
         $message_repository = $this->em->getRepository("OpenEcolesUserBundle:Message");
         $query = $message_repository->createQueryBuilder('m')
             ->leftJoin('m.destinataire', 'd')
+            ->leftJoin('m.auteur','auteur')
+            ->groupBy('auteur.id')
             ->where('d.id =:id')
             ->setParameter('id', $id)
+            ->orderBy('m.date', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+    // Retourne une conversation entre deux utlisateurs
+    public function getConversationBetweenUsers($idauteur,$iddestinataire){
+        $message_repository = $this->em->getRepository("OpenEcolesUserBundle:Message");
+        $query = $message_repository->createQueryBuilder('m')
+            ->leftJoin('m.destinataire', 'destinataire')
+            ->leftJoin('m.auteur','auteur')
+            ->where('destinataire.id =:iddestinataire AND auteur.id=:idauteur')
+            ->orWhere('destinataire.id =:idauteur AND auteur.id=:iddestinataire')
+            ->setParameter('idauteur', $idauteur)
+            ->setParameter('iddestinataire', $iddestinataire)
             ->orderBy('m.date', 'ASC')
             ->getQuery();
 
@@ -51,5 +68,6 @@ class MessageBDServices {
     public function save(Message $message){
         $this->em->persist($message);
         $this->em->flush();
+        return $message;
     }
 }
