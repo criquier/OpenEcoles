@@ -1,3 +1,18 @@
 open_ecoles_user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: OpenEcolesUserBundle:Default:index }
+    pattern:  /utilisateur/{id}
+    defaults: { _controller: OpenEcolesUserBundle:Message:indexMessage }
+    requirements:
+        id:  \d+
+
+open_ecoles_user_envoie_messsage:
+    pattern: /message
+    defaults: {_controller:OpenEcolesUserBundle:Message:envoyerMessage }
+    requirements:
+        _method: POST
+
+
+open_ecoles_user_consulte_messsage:
+    pattern: /consulte/{id}
+    defaults: {_controller:OpenEcolesUserBundle:Message:consulterMessage }
+    requirements:
+        id:  \d+

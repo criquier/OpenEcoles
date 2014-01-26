@@ -1,0 +1,23 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+{% endblock %}
+{% block section %}
+    <h6>Liste des messages echangé avec {{ user.username }}</h6>
+    {#On affiche la liste des messages de l'utilisateur#}
+
+    {% for message in conversation %}
+        <p>{{ message.date|date('d/m/Y H:i:s')}}"  "{{ message.contenu}}</p>
+
+    {% else %}
+        <p>Votre boite de reception est vide</p>
+    {% endfor %}
+    {# {% include "OpenEcolesUserBundle:Message:formulaire.html.twig" %} #}
+
+{% endblock %}
+{% block section %}
+
+   <input type="text">
+{% endblock %}

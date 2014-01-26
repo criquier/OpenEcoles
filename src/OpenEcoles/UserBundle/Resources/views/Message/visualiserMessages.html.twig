@@ -1,0 +1,44 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+{% endblock %}
+{% block section %}
+    <h6>Liste des messages reçus</h6>
+    {# {% include "OpenEcolesUserBundle:Message:formulaire.html.twig" %} #}
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+        $("#voter").click(function(){
+            $.ajax({
+                type:"POST",
+                url: "{{ path("open_ecoles_user_envoie_messsage",{'id':1}) }}",
+                data:{
+                    note:$("input:checked").val()
+                },
+                success:function(data){
+                    $("#moyenne").empty();
+                    $("#moyenne").text("Moyenne :"+data["moyenne"]);
+
+                    var div = $("#message");
+                    div.addClass("alert alert-success");
+                    div.text(data["message"]);
+                    div.fadeIn(5000);
+                    div.fadeOut(5000);
+                },
+                statusCode: {
+                    404: function(data) {
+                        var div = $("#message");
+                        div.addClass("alert alert-danger");
+                        div.text("Erreur, votre note n'a pu être prise en compte. Réessayer dans quelques instants.");
+                        div.fadeIn( 5000 );
+                        div.fadeOut(5000);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
