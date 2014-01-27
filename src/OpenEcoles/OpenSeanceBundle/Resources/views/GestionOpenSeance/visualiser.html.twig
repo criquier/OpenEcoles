@@ -1,0 +1,44 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+    - OpenSeances
+{% endblock %}
+
+{%  block section %}
+    <section>
+        <article class="openseanceResume">
+            <header>
+                <section class="openseancetitre">
+                    {{ openseance.getTitre() }} par {{ openseance.getOrganisateur() }}
+                </section>
+                <section class="openseanceduree">
+                    De {{ openseance.getDateDebut()|date("d-m-Y h:i") }} à {{ openseance.getDateFin()|date("d-m-Y h:i") }}
+                </section>
+            </header>
+            <p class="openseancedescription">
+                {{ openseance.getDescription() }}
+            </p>
+            <footer>
+                <input type="button" value="Participer"  />
+            </footer>
+        </article>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" >
+        $("input").click(function(){
+            $.ajax({
+                type: "POST",
+                url:"{{ path('open_ecoles_open_seance_inscription',{'id':openseance.getId()}) }}",
+                data:{
+
+                },
+                success:function(data){
+                    alert(data);
+                }
+            })
+        })
+    </script>
+{% endblock %}

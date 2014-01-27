@@ -130,6 +130,17 @@ open_ecoles_front_office:
               contenu_central:
                   element1:
                       render: "OpenEcolesTutorialBundle:Tutoriel:topTutoriel"
+         bundleopenseance:
+              parametre:
+                  name: "OpenSeance"
+              menu_horizontal:
+                  element1:
+                      lien: "open_ecoles_open_seance_homepage"
+                      nom: "OpenSeances"
+              menu_vertical:
+              contenu_central:
+                  element1:
+                      render: ""
 
 
 

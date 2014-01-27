@@ -5,6 +5,10 @@ services:
 #    open_ecoles_open_seance.example:
 #        class: %open_ecoles_open_seance.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    open_ecoles_open_seance_actionBD:
-        class: OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance
+    open_ecoles_open_seance.gestionOpenSeance:
+        class: OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance
+        arguments: [@doctrine.orm.entity_manager]
+
+    open_ecoles_open_seance.participationOpenSeance:
+        class: OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance
         arguments: [@doctrine.orm.entity_manager]

@@ -1,0 +1,28 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block title %}
+{{ parent() }}
+    - OpenSeances
+{% endblock %}
+
+{%  block section %}
+    voici l'ensemble des openSeances que nous avons sur le site.
+    <section>
+        {% for openseance in openseances %}
+            <article class="openseanceResume">
+                <header>
+                    <section class="openseancetitre">
+                        {{ openseance.getTitre() }} par {{ openseance.getOrganisateur() }}
+                    </section>
+                    <section class="openseanceduree">
+                        De {{ openseance.getDateDebut()|date("d-m-Y h:i") }} à {{ openseance.getDateFin()|date("d-m-Y h:i") }}
+                    </section>
+                </header>
+                <footer>
+                    <a href="{{ path("open_ecoles_open_seance_detail",{'id':openseance.getId()}) }}">Detail</a>
+                </footer>
+            </article>
+        {% endfor %}
+    </section>
+
+{% endblock %}

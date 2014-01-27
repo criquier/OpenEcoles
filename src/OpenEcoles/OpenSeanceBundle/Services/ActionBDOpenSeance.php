@@ -6,9 +6,12 @@
  * Time: 15:41
  */
 
-namespace OpenEcoles\OpenSeanceBundle\Service;
+namespace OpenEcoles\OpenSeanceBundle\Services;
+
+use \Doctrine\ORM\EntityManager;
 
 use OpenEcoles\OpenSeanceBundle\Entity\OpenSeance;
+
 
 class ActionBDOpenSeance{
 

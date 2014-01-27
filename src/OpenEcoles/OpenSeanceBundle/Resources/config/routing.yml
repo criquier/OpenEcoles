@@ -1,3 +1,15 @@
-open_ecoles_open_seance_homepage:
+open_ecoles_open_seance_admin_creation:
     pattern:  /admin/creation
-    defaults: { _controller: OpenEcolesOpenSeanceBundle:GestionOpenSeance:accueil }
+    defaults: { _controller: OpenEcolesOpenSeanceBundle:GestionOpenSeance:ajouterAdmin }
+
+open_ecoles_open_seance_homepage:
+    pattern: /
+    defaults: {_controller: OpenEcolesOpenSeanceBundle:GestionOpenSeance:visualiserAll }
+
+open_ecoles_open_seance_detail:
+    pattern: /Detail/{id}
+    defaults: {_controller: OpenEcolesOpenSeanceBundle:GestionOpenSeance:visualiser }
+
+open_ecoles_open_seance_inscription:
+    pattern: /Inscription/{id}
+    defaults: {_controller: OpenEcolesOpenSeanceBundle:ParticipationOpenSeance:inscription }

@@ -1,0 +1,10 @@
+{%  extends "OpenEcolesBackOfficeBundle:Accueil:index.html.twig" %}
+
+{% block section %}
+    {{ form_widget(form) }}
+    <input type="submit" value="Annuler" />
+    <input type="submit" value="{{ action }}" />
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
