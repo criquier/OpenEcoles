@@ -110,9 +110,11 @@ open_ecoles_front_office:
                   element1:
                       lien: "fos_user_profile_show"
                       nom: "Mon profil"
+                      badge: false
                   element2:
                       lien: "open_ecoles_tutorial_homepage"
                       nom: "Mes messages"
+                      badge: true
               contenu_central:
                   element1:
                       render: ""
@@ -127,6 +129,7 @@ open_ecoles_front_office:
                   element1:
                       lien: "open_ecoles_tutorial_mes_documents"
                       nom: "Mes documents"
+                      badge: false
               contenu_central:
                   element1:
                       render: ""
@@ -179,6 +182,15 @@ open_ecoles_tutorial:
     limitation:
         accueil:
             affichage_max_tutoriel_categorie: 3
+
+open_ecoles_user:
+    connexion:
+        element1:
+            lien: "OpenEcolesTutorial:Tutoriel:topTutoriel"
+        element2:
+            lien: ""
+        element3:
+            lien: ""
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'

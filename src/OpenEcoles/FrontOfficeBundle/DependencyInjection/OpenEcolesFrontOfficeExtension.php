@@ -33,7 +33,7 @@ class OpenEcolesFrontOfficeExtension extends Extension
                 $menuHorizontal[] = array("lien"=>$menuH["lien"],"nom"=>$menuH["nom"]);
             }
            foreach($list["menu_vertical"] as $menuV){
-                $menuVertical[] = array("lien"=>$menuV["lien"],"nom"=>$menuV["nom"]);
+                $menuVertical[] = array("lien"=>$menuV["lien"],"nom"=>$menuV["nom"],"badge"=>$menuV["badge"]);
             }
             foreach($list["contenu_central"] as $contenuC){
                 $contenuCentral[] = array("action"=>$contenuC["render"]);

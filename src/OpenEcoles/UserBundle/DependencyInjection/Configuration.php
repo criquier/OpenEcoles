@@ -20,6 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('open_ecoles_user');
 
+        $rootNode->children()
+                    ->arrayNode("connexion")
+                        ->prototype("array")
+                            ->children()
+                                 ->scalarNode("lien")->end()
+                            ->end()
+                        ->end()
+                    ->end();
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.

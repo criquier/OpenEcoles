@@ -1,7 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
     <li class="titreMenuVertical">Mon espace personnel</li>
     {% for menu in menuV %}
-        <li><a href="{{ path(menu.lien) }}">{{ menu.nom }}</a></li>
+        <li><a href="{{ path(menu.lien) }}">{{ menu.nom }} {% if menu.badge == true %}<badge id="messageNonConsulte" class="badge">0</badge>{% endif %}</a></li>
     {% else %}
         Pas de données
     {% endfor %}

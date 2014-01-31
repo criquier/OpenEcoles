@@ -42,6 +42,7 @@ class Configuration implements ConfigurationInterface
                                         ->children()
                                             ->scalarNode("lien")->end()
                                             ->scalarNode("nom")->end()
+                                            ->booleanNode("badge")->end()
                                         ->end()
                                     ->end()
                                 ->end()

@@ -65,6 +65,11 @@ footer[class="afficher_plus"]{
 .illustration_min{
 }
 
+.diaporama{
+    min-height:300px;
+    color:black;
+}
+
 .trait{
     border: 1px solid #e0e0dd;
     width:80%;

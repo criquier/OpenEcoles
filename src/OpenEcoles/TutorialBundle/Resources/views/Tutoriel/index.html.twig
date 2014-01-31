@@ -6,67 +6,65 @@
 {% endblock %}
 
 {% block section %}
-
     {% if message_info is defined %}
         <span class="label label-success">{{ message_info }}</span>
     {% endif %}
 
-
-        {% if app.user is not null  %}
-            <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
-        {%  endif  %}
-        {{ render(controller("OpenEcolesTutorialBundle:Tutoriel:topTutoriel",{'param':1})) }}
-        <section>
-            {% for category in categories %}
-                <article class="category">
-                    <header>
-                        <h3>{{ category.nom }}</h3>
-                    </header>
-                    {% set count = 2 %}
-                    {% for tutoriel in tutoriels[category.nom] %}
-                        <article class="tutoriel">
-                            <article class="tutoriel_illustration">
-                                {% if count == 2 %}
-                                    <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossierorang.jpg")}}" alt="dossier"/>
-                                    {% set count = count - 1%}
+    {% if app.user is not null  %}
+        <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
+    {%  endif  %}
+    {{ render(controller("OpenEcolesTutorialBundle:Tutoriel:topTutoriel",{'param':1})) }}
+    <section>
+        {% for category in categories %}
+            <article class="category">
+                <header>
+                    <h3>{{ category.nom }}</h3>
+                </header>
+                {% set count = 2 %}
+                {% for tutoriel in tutoriels[category.nom] %}
+                    <article class="tutoriel">
+                        <article class="tutoriel_illustration">
+                            {% if count == 2 %}
+                                <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossierorang.jpg")}}" alt="dossier"/>
+                                {% set count = count - 1%}
+                            {% else %}
+                                {% if count == 1 %}
+                                    <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossierbleu.jpg")}}" alt="dossier"/>
+                                   {% set count = count - 1%}
                                 {% else %}
-                                    {% if count == 1 %}
-                                        <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossierbleu.jpg")}}" alt="dossier"/>
-                                       {% set count = count - 1%}
-                                    {% else %}
-                                        {% if count == 0 %}
-                                            <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossiervert.jpg")}}" alt="dossier"/>
-                                            {% set count = count - 1%}
-                                        {% endif %}
+                                    {% if count == 0 %}
+                                        <img class="illustration_min" src="{{ asset("bundles/openecolestutorial/images/dossiervert.jpg")}}" alt="dossier"/>
+                                        {% set count = count - 1%}
                                     {% endif %}
-                               {% endif %}
-                            </article>
-                            <article class="tutoriel_info">
-                                <a  href="{{ path("open_ecoles_tutorial_visualiser",{"id":tutoriel.getId})}}" >{{ tutoriel.getTitre }}</a>
-                                {% if app.user == tutoriel.getAuteur() %}
-                                    <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="modifierCrayon" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="modifier" title="modifier" /></a><br/>
                                 {% endif %}
-                                {%  if tutoriel.getAuteur() is null  %}
-                                    Personne Inconnu
-                                {%  else %}
-                                   {{  tutoriel.getAuteur() }}
-                                {% endif %}
-                            </article>
+                           {% endif %}
                         </article>
-                        {% if count >= 0 %}
-                            <div class="trait"></div>
-                        {% endif %}
-                    {% else %}
-                        Pas de tutoriel dans cette catégorie
-                    {% endfor %}
-                    <footer class="afficher_plus">
-                        <a href="{{ path("open_ecoles_tutorial_afficher_plus",{'id':category.getId})}}" >afficher plus >></a>
-                    </footer>
-                </article>
-            {% else %}
-                Pas de catégorie
-            {% endfor %}
-        </section>
+                        <article class="tutoriel_info">
+                            <a  href="{{ path("open_ecoles_tutorial_visualiser",{"id":tutoriel.getId})}}" >{{ tutoriel.getTitre }}</a>
+                            {% if app.user == tutoriel.getAuteur() %}
+                                <a href="{{ path("open_ecoles_tutorial_modifier",{'id':tutoriel.getId})}}"><img class="modifierCrayon" src="{{ asset("bundles/openecolestutorial/images/ptitcrayon.png")}}" alt="modifier" title="modifier" /></a><br/>
+                            {% endif %}
+                            {%  if tutoriel.getAuteur() is null  %}
+                                Personne Inconnu
+                            {%  else %}
+                               {{  tutoriel.getAuteur() }}
+                            {% endif %}
+                        </article>
+                    </article>
+                    {% if count >= 0 %}
+                        <div class="trait"></div>
+                    {% endif %}
+                {% else %}
+                    Pas de tutoriel dans cette catégorie
+                {% endfor %}
+                <footer class="afficher_plus">
+                    <a href="{{ path("open_ecoles_tutorial_afficher_plus",{'id':category.getId})}}" >afficher plus >></a>
+                </footer>
+            </article>
+        {% else %}
+            Pas de catégorie
+        {% endfor %}
+    </section>
 {% endblock %}
 
 {% block recommandation %}

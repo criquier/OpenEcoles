@@ -22,6 +22,10 @@ class OpenEcolesUserExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $connexions = $configs['connexion'];
+
+        $container->setParameter("elements",$connexions);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
