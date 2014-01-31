@@ -8,7 +8,7 @@
 
 nav[id*="menu"]{
     background-color: white;
-    width:13%;
+    width:15%;
     margin-top:-1.5%;
     text-align:center;
     display:inline-block;
@@ -26,16 +26,21 @@ nav[id*="menu"] > ul > li:last-child{
 
 nav[class*="menuhorizontal"]{
     box-shadow: 8px 8px 12px #aaa;
+    background-color:white;
 }
 
 nav[class*="menuhorizontal"] > ul > li{
     width:10%;
     text-align:center;
     border-right:1px solid darkgray;
+    box-shadow: 8px 0px 12px #aaa;
+
 }
 
 nav[class*="menuhorizontal"] > ul > li:last-child{
     border-right:none;
+    box-shadow: 8px 8px 12px #aaa;
+
 }
 
 .titreMenuVertical{
@@ -45,7 +50,7 @@ nav[class*="menuhorizontal"] > ul > li:last-child{
 }
 
 section[id*="content"]{
-    width:78%;
+    width:85%;
     display:inline-block;
     vertical-align: top;
 }
@@ -54,10 +59,10 @@ section[class*="recommandation"]{
     display:inline-block;
     vertical-align: top;
     height:100%;
-    margin-top:-4%;
-    padding-top:-1%;
-    margin-left:5%;
+    top:13%;
+    right:0;
     width:15%;
+    position:absolute;
     background-color: white;
 }
 
@@ -124,7 +129,7 @@ ul[class*="nav-pills"] > li{
 .contenu{
     display:inline-block;
     vertical-align: top;
-    width:85%;
+    width:83%;
 /*    overflow:auto;
     max-height:500px;*/
 }
@@ -140,7 +145,7 @@ a{
     margin-left:5%;
     border:1px solid black;
     background-color: white;
-    border-radius:10%;
+    border-radius:10px;
     margin-bottom:3%;
     box-shadow: 8px 8px 12px #aaa;
 }

@@ -10,9 +10,11 @@
         <span class="label label-success">{{ message_info }}</span>
     {% endif %}
 
-    {% if app.user is not null  %}
-        <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
-    {%  endif  %}
+   <section class="ajoutcour">
+       {% if app.user is not null  %}
+         <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
+        {%  endif  %}
+   </section>
     {{ render(controller("OpenEcolesTutorialBundle:Tutoriel:topTutoriel",{'param':1})) }}
     <section>
         {% for category in categories %}
@@ -68,7 +70,9 @@
 {% endblock %}
 
 {% block recommandation %}
+    <section style="display:inline-block;width:20%">
     Nous vous recommandons les tutoriels suivants:
+    </section>
 {% endblock %}
 
 {% block javascripts%}

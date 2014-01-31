@@ -18,6 +18,13 @@ article[class*="category"]{
 }
 article > header > h3{
     text-align: center;
+    background-color: rgb(121,182,23);
+}
+
+.ajoutcour{
+    position:absolute;
+    top:13%;
+    right:2%;
 }
 
 article[class*="tutoriel"]{

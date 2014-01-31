@@ -27,14 +27,19 @@ class TutorielController extends Controller{
         $categories = $managerCategorie->getAllCategories();
 
         $tutoriels = array();
+        $categorieFull = array();
         foreach($categories as $categorie){
             $manager = $this->container->get("open_ecoles_tutorial.gestiontutoriel");
-            $tutoriels[$categorie->getNom()] = $manager->getAllValidateTutorielByCategory($categorie,null,$limitation,0);
+            $tutos = $manager->getAllValidateTutorielByCategory($categorie,null,$limitation,0);
+            if(count($tutos) > 0){
+                $tutoriels[$categorie->getNom()] = $tutos;
+                $categorieFull[] = $categorie;
+            }
         }
 
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:index.html.twig",array(
         	"tutoriels" => $tutoriels,
-            "categories" => $categories,
+            "categories" => $categorieFull,
         ));
     }
 
