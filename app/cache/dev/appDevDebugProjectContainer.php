@@ -146,12 +146,14 @@ class appDevDebugProjectContainer extends Container
             'monolog.logger.router' => 'getMonolog_Logger_RouterService',
             'monolog.logger.security' => 'getMonolog_Logger_SecurityService',
             'monolog.logger.templating' => 'getMonolog_Logger_TemplatingService',
-            'open_ecoles_open_seance_actionbd' => 'getOpenEcolesOpenSeanceActionbdService',
+            'open_ecoles_open_seance.gestionopenseance' => 'getOpenEcolesOpenSeance_GestionopenseanceService',
+            'open_ecoles_open_seance.participationopenseance' => 'getOpenEcolesOpenSeance_ParticipationopenseanceService',
             'open_ecoles_tutorial.gestioncategorie' => 'getOpenEcolesTutorial_GestioncategorieService',
             'open_ecoles_tutorial.gestionchapitre' => 'getOpenEcolesTutorial_GestionchapitreService',
             'open_ecoles_tutorial.gestionnote' => 'getOpenEcolesTutorial_GestionnoteService',
             'open_ecoles_tutorial.gestiontutoriel' => 'getOpenEcolesTutorial_GestiontutorielService',
             'open_ecoles_tutorial.validationtutoriel' => 'getOpenEcolesTutorial_ValidationtutorielService',
+            'open_ecoles_whatsup.tri' => 'getOpenEcolesWhatsup_TriService',
             'profiler' => 'getProfilerService',
             'profiler_listener' => 'getProfilerListenerService',
             'property_accessor' => 'getPropertyAccessorService',
@@ -244,7 +246,10 @@ class appDevDebugProjectContainer extends Container
             'twig' => 'getTwigService',
             'twig.controller.exception' => 'getTwig_Controller_ExceptionService',
             'twig.exception_listener' => 'getTwig_ExceptionListenerService',
+            'twig.extension.debug' => 'getTwig_Extension_DebugService',
+            'twig.extension.intl' => 'getTwig_Extension_IntlService',
             'twig.extension.stfalcon_tinymce' => 'getTwig_Extension_StfalconTinymceService',
+            'twig.extension.text' => 'getTwig_Extension_TextService',
             'twig.loader' => 'getTwig_LoaderService',
             'twig.translation.extractor' => 'getTwig_Translation_ExtractorService',
             'uri_signer' => 'getUriSignerService',
@@ -1866,16 +1871,29 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'open_ecoles_open_seance_actionbd' service.
+     * Gets the 'open_ecoles_open_seance.gestionopenseance' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance A OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance instance.
+     * @return OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance A OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance instance.
      */
-    protected function getOpenEcolesOpenSeanceActionbdService()
+    protected function getOpenEcolesOpenSeance_GestionopenseanceService()
     {
-        return $this->services['open_ecoles_open_seance_actionbd'] = new \OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance($this->get('doctrine.orm.default_entity_manager'));
+        return $this->services['open_ecoles_open_seance.gestionopenseance'] = new \OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance($this->get('doctrine.orm.default_entity_manager'));
+    }
+
+    /**
+     * Gets the 'open_ecoles_open_seance.participationopenseance' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance A OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance instance.
+     */
+    protected function getOpenEcolesOpenSeance_ParticipationopenseanceService()
+    {
+        return $this->services['open_ecoles_open_seance.participationopenseance'] = new \OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance($this->get('doctrine.orm.default_entity_manager'));
     }
 
     /**
@@ -1941,6 +1959,19 @@ class appDevDebugProjectContainer extends Container
     protected function getOpenEcolesTutorial_ValidationtutorielService()
     {
         return $this->services['open_ecoles_tutorial.validationtutoriel'] = new \OpenEcoles\TutorialBundle\Services\validateTutoriel();
+    }
+
+    /**
+     * Gets the 'open_ecoles_whatsup.tri' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return OpenEcoles\WhatsupBundle\Services\PublicationTri A OpenEcoles\WhatsupBundle\Services\PublicationTri instance.
+     */
+    protected function getOpenEcolesWhatsup_TriService()
+    {
+        return $this->services['open_ecoles_whatsup.tri'] = new \OpenEcoles\WhatsupBundle\Services\PublicationTri();
     }
 
     /**
@@ -2182,7 +2213,7 @@ class appDevDebugProjectContainer extends Container
         $q = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($o, array('default_target_path' => '/', 'always_use_default_target_path' => false, 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $q->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $p, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $o, 'main', $q, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $o, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52d7f23d88811', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $o, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $p, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $o, 'main', $q, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $o, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52eaa90adb4ca', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $o, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -3148,6 +3179,9 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'autoescape_service' => NULL, 'autoescape_service_method' => NULL, 'cache' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
 
+        $instance->addExtension($this->get('twig.extension.text'));
+        $instance->addExtension($this->get('twig.extension.intl'));
+        $instance->addExtension($this->get('twig.extension.debug'));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
@@ -3158,7 +3192,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
-        $instance->addExtension(new \Twig_Extension_Debug());
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension($this->get('twig.extension.stfalcon_tinymce'));
@@ -3194,6 +3227,32 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'twig.extension.debug' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Debug A Twig_Extensions_Extension_Debug instance.
+     */
+    protected function getTwig_Extension_DebugService()
+    {
+        return $this->services['twig.extension.debug'] = new \Twig_Extensions_Extension_Debug();
+    }
+
+    /**
+     * Gets the 'twig.extension.intl' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Intl A Twig_Extensions_Extension_Intl instance.
+     */
+    protected function getTwig_Extension_IntlService()
+    {
+        return $this->services['twig.extension.intl'] = new \Twig_Extensions_Extension_Intl();
+    }
+
+    /**
      * Gets the 'twig.extension.stfalcon_tinymce' service.
      *
      * This service is shared.
@@ -3204,6 +3263,19 @@ class appDevDebugProjectContainer extends Container
     protected function getTwig_Extension_StfalconTinymceService()
     {
         return $this->services['twig.extension.stfalcon_tinymce'] = new \Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension($this);
+    }
+
+    /**
+     * Gets the 'twig.extension.text' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Text A Twig_Extensions_Extension_Text instance.
+     */
+    protected function getTwig_Extension_TextService()
+    {
+        return $this->services['twig.extension.text'] = new \Twig_Extensions_Extension_Text();
     }
 
     /**
@@ -3233,6 +3305,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle/Resources/views', 'FOSUser');
         $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\OpenAnnoncesBundle/Resources/views', 'OpenEcolesOpenAnnonces');
         $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\OpenSeanceBundle/Resources/views', 'OpenEcolesOpenSeance');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\WhatsupBundle/Resources/views', 'OpenEcolesWhatsup');
         $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources/views');
@@ -3502,7 +3575,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52d7f23d88811')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52eaa90adb4ca')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3703,6 +3776,7 @@ class appDevDebugProjectContainer extends Container
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
                 'OpenEcolesOpenAnnoncesBundle' => 'OpenEcoles\\OpenAnnoncesBundle\\OpenEcolesOpenAnnoncesBundle',
                 'OpenEcolesOpenSeanceBundle' => 'OpenEcoles\\OpenSeanceBundle\\OpenEcolesOpenSeanceBundle',
+                'OpenEcolesWhatsupBundle' => 'OpenEcoles\\WhatsupBundle\\OpenEcolesWhatsupBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
@@ -4190,6 +4264,14 @@ class appDevDebugProjectContainer extends Container
                     'lien' => 'open_ecoles_tutorial_homepage',
                     'nom' => 'Tutoriel',
                 ),
+                1 => array(
+                    'lien' => 'open_ecoles_open_seance_homepage',
+                    'nom' => 'OpenSeances',
+                ),
+                2 => array(
+                    'lien' => 'open_ecoles_open_seance_homepage',
+                    'nom' => 'OpenAnnonces',
+                ),
             ),
             'menu_vertical' => array(
                 0 => array(
@@ -4210,7 +4292,16 @@ class appDevDebugProjectContainer extends Container
                     'action' => '',
                 ),
                 1 => array(
-                    'action' => 'OpenEcolesTutorialBundle:Tutoriel:topTutoriel',
+                    'action' => '',
+                ),
+                2 => array(
+                    'action' => '',
+                ),
+                3 => array(
+                    'action' => 'OpenEcolesWhatsupBundle:Whatsup:whatsup',
+                ),
+                4 => array(
+                    'action' => '',
                 ),
             ),
             'affichage_max_tutorial_par_categorie' => 3,

@@ -22,11 +22,12 @@ class OpenSeanceType extends AbstractType{
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre',null,array("required"=>true));
-        $builder->add('description',null,array("required"=>true,"attr"=>array("class"=>"tinymce")));
-        $builder->add('dateDebut',"text",array("required"=>true));
-        $builder->add('dateFin',"text",array("required"=>true));
-        $builder->add('organisateur',null,array("required"=>true));
+        $builder->add('Titre',null,array("required"=>true));
+        $builder->add('Description',null,array("required"=>true,"attr"=>array("class"=>"tinymce")));
+        $builder->add('Date de Debut',"text",array("required"=>true));
+        $builder->add('Date de Fin',"text",array("required"=>true));
+        $builder->add('Lieu',null,array("required"=>true));
+        $builder->add('Organisateur',null,array("required"=>true));
     }
 
     public function getName()

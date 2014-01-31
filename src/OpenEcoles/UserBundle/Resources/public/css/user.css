@@ -1,0 +1,40 @@
+.formConnexion{
+    width:40%;
+    display:inline-block;
+    vertical-align: top;
+    margin-left: 32%;
+    padding-top: 1%;
+    padding-bottom:-1%;
+    height:17%;
+    border:1px yellow solid;
+}
+
+.diaporama{
+    width:100%;
+    height:20%;
+    background-color: darkgray;
+}
+
+form{
+    height:50%;
+    border:1px red solid;
+}
+
+section[class*="formConnexion"] >  a{
+    color:rgb(121,182,23);
+}
+
+section[class*="formConnexion"] > a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.valider{
+    background-color: rgb(122,183,23);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    margin-top: -1.5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}

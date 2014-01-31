@@ -133,10 +133,37 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // open_ecoles_whatsup_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'open_ecoles_whatsup_homepage')), array (  '_controller' => 'OpenEcolesWhatsupBundle:Default:index',));
+        }
+
         if (0 === strpos($pathinfo, '/Open')) {
-            // open_ecoles_open_seance_homepage
-            if ($pathinfo === '/OpenSeances/admin/creation') {
-                return array (  '_controller' => 'OpenEcoles\\OpenSeanceBundle\\Controller\\GestionOpenSeanceController::accueilAction',  '_route' => 'open_ecoles_open_seance_homepage',);
+            if (0 === strpos($pathinfo, '/OpenSeances')) {
+                // open_ecoles_open_seance_admin_creation
+                if ($pathinfo === '/OpenSeances/admin/creation') {
+                    return array (  '_controller' => 'OpenEcoles\\OpenSeanceBundle\\Controller\\GestionOpenSeanceController::ajouterAdminAction',  '_route' => 'open_ecoles_open_seance_admin_creation',);
+                }
+
+                // open_ecoles_open_seance_homepage
+                if (rtrim($pathinfo, '/') === '/OpenSeances') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'open_ecoles_open_seance_homepage');
+                    }
+
+                    return array (  '_controller' => 'OpenEcoles\\OpenSeanceBundle\\Controller\\GestionOpenSeanceController::visualiserAllAction',  '_route' => 'open_ecoles_open_seance_homepage',);
+                }
+
+                // open_ecoles_open_seance_detail
+                if (0 === strpos($pathinfo, '/OpenSeances/Detail') && preg_match('#^/OpenSeances/Detail/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'open_ecoles_open_seance_detail')), array (  '_controller' => 'OpenEcoles\\OpenSeanceBundle\\Controller\\GestionOpenSeanceController::visualiserAction',));
+                }
+
+                // open_ecoles_open_seance_inscription
+                if (0 === strpos($pathinfo, '/OpenSeances/Inscription') && preg_match('#^/OpenSeances/Inscription/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'open_ecoles_open_seance_inscription')), array (  '_controller' => 'OpenEcoles\\OpenSeanceBundle\\Controller\\ParticipationOpenSeanceController::inscriptionAction',));
+                }
+
             }
 
             // open_ecoles_open_annonces_homepage

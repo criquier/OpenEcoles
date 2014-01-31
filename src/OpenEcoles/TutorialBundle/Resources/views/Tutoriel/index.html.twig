@@ -12,25 +12,10 @@
     {% endif %}
 
 
-    <section style="vertical-align: top;display:inline-block;width:85%">
         {% if app.user is not null  %}
             <a href="{{path("open_ecoles_tutorial_ajout")}}" title="Ajouter un cours">Ajouter un cours</a>
         {%  endif  %}
-        <section class="defilement">
-            <section class="anythingSlider">
-                <section class="wrapper">
-                    <ul>
-                        <li> Palop </li>
-                        <li> dsgfdgf </li>
-                        <li> Bonjour </li>
-                        <li> Merci </li>
-                    </ul>
-                    <section class="line-bg"></section>
-                </section>
-
-            </section>
-            Element qui defile + recommandation
-        </section>
+        {{ render(controller("OpenEcolesTutorialBundle:Tutoriel:topTutoriel",{'param':1})) }}
         <section>
             {% for category in categories %}
                 <article class="category">
@@ -82,10 +67,10 @@
                 Pas de catégorie
             {% endfor %}
         </section>
-    </section>
 {% endblock %}
 
 {% block recommandation %}
+    Nous vous recommandons les tutoriels suivants:
 {% endblock %}
 
 {% block javascripts%}

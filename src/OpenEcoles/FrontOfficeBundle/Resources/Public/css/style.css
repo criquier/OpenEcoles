@@ -1,21 +1,69 @@
 .menu_gauche{
     width:25%;
 }
+
+.selected{
+    background-color: rgb(121,182,23);
+}
+
 nav[id*="menu"]{
-    width:10%;
-    display: inline-block;
+    background-color: white;
+    width:13%;
+    margin-top:-1.5%;
+    text-align:center;
+    display:inline-block;
     vertical-align: top;
+    box-shadow: 8px 8px 12px #aaa;
+}
+
+nav[id*="menu"] > ul > li{
+    border-bottom: 1px solid darkgray;
+}
+
+nav[id*="menu"] > ul > li:last-child{
+    border-bottom: none;
+}
+
+nav[class*="menuhorizontal"]{
+    box-shadow: 8px 8px 12px #aaa;
+}
+
+nav[class*="menuhorizontal"] > ul > li{
+    width:10%;
+    text-align:center;
+    border-right:1px solid darkgray;
+}
+
+nav[class*="menuhorizontal"] > ul > li:last-child{
+    border-right:none;
+}
+
+.titreMenuVertical{
+    background-color: white;
+    margin-top:10%;
+    margin-bottom:10%;
 }
 
 section[id*="content"]{
-    width:75%;
+    width:78%;
     display:inline-block;
     vertical-align: top;
 }
 
-section[id*="recommandation"]{
+section[class*="recommandation"]{
     display:inline-block;
     vertical-align: top;
+    height:100%;
+    margin-top:-4%;
+    padding-top:-1%;
+    margin-left:5%;
+    width:15%;
+    background-color: white;
+}
+
+section[class*="recommandation"] > article > header > h2{
+    background-color: rgb(121,182,23);
+    width:100%;
 }
 
 .research{
@@ -52,14 +100,16 @@ section[id*="recommandation"]{
     background-image: linear-gradient(white,black);
     font-size: 0.8em;
     color:white;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
 }
 
 section[class*="frontfooter"] > article{
     display:inline-block;
     width:49.5%;
     vertical-align: top;
+
 }
 
 section[class*="frontfooter"]:last-child{
@@ -67,13 +117,56 @@ section[class*="frontfooter"]:last-child{
 
 }
 
-ul[class*="nav-pill"] > li{
+ul[class*="nav-pills"] > li{
     background-color: white;
+}
+
+.contenu{
+    display:inline-block;
+    vertical-align: top;
+    width:85%;
+/*    overflow:auto;
+    max-height:500px;*/
 }
 
 a{
     color: black;
 }
+
+.publication{
+    width:27%;
+    display:inline-block;
+    vertical-align: top;
+    margin-left:5%;
+    border:1px solid black;
+    background-color: white;
+    border-radius:10%;
+    margin-bottom:3%;
+    box-shadow: 8px 8px 12px #aaa;
+}
+
+article[class*="openseancePublication"] > header > h3{
+    background-color:#FF3333;
+    text-align: center;
+    color:white;
+}
+
+article[class*="tutorielPublication"] > header > h3{
+    background-color:rgb(121,182,23);
+    text-align: center;
+    color:white;
+}
+
+article[class*="publication"] > header > span{
+    margin-left:4%;
+}
+
+article[class*="publication"] > p{
+    text-align: justify;
+    margin-left:2%;
+    margin-right:2%;
+}
+
 
 a:hover{
     color: black;

@@ -35,6 +35,7 @@ class ActionBDNote{
     public function getTopTutoriel($tutoriels ,$limit){
         $top = array();
         foreach($tutoriels as $tutoriel){
+
             if(count($top) < $limit){
                 $top[]= $tutoriel;
             }
@@ -47,6 +48,7 @@ class ActionBDNote{
                 }
             }
         }
+        return $top;
     }
 
     public function save(Note $note){

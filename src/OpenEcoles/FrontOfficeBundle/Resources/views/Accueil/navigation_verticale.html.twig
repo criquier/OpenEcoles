@@ -1,5 +1,5 @@
 <ul class="nav nav-pills nav-stacked">
-    <li>Mon espace personnel</li>
+    <li class="titreMenuVertical">Mon espace personnel</li>
     {% for menu in menuV %}
         <li><a href="{{ path(menu.lien) }}">{{ menu.nom }}</a></li>
     {% else %}

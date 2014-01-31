@@ -10,6 +10,7 @@ namespace OpenEcoles\OpenSeanceBundle\Controller;
 use OpenEcoles\OpenSeanceBundle\Entity\OpenSeance;
 use OpenEcoles\OpenSeanceBundle\Forms\OpenSeanceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class GestionOpenSeanceController extends Controller
 {
@@ -35,7 +36,7 @@ class GestionOpenSeanceController extends Controller
         ));
     }
 
-    public function ajouterAdminAction(){
+    public function ajouterAdminAction(Request $request){
         $openseance = new OpenSeance();
 
         $form = $this->createForm(new OpenSeanceType("Créer"), $openseance);

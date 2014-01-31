@@ -1,0 +1,11 @@
+{% for publication in publications %}
+    <article class="publication {{ publication.type }}Publication">
+        <header>
+           <h3> {{ publication.object.getTitre() }}</h3>
+            <span>le {{ publication['object'].getDateCreation()|date("d-m-Y h:i") }}</span>
+        </header>
+        <p>
+            {{ publication['object'].getDescription()|truncate(100,'...')|raw }}
+        </p>
+    </article>
+{% endfor %}

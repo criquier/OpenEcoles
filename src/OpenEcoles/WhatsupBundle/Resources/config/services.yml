@@ -1,0 +1,10 @@
+parameters:
+#    open_ecoles_whatsup.example.class: OpenEcoles\WhatsupBundle\Example
+
+services:
+#    open_ecoles_whatsup.example:
+#        class: %open_ecoles_whatsup.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    open_ecoles_whatsup.tri:
+        class: OpenEcoles\WhatsupBundle\Services\PublicationTri

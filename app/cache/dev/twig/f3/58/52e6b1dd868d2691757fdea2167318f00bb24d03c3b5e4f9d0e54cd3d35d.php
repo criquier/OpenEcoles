@@ -17,7 +17,7 @@ class __TwigTemplate_f35852e6b1dd868d2691757fdea2167318f00bb24d03c3b5e4f9d0e54cd
     {
         // line 1
         echo "<ul class=\"nav nav-pills nav-stacked\">
-    <li>Mon espace personnel</li>
+    <li class=\"titreMenuVertical\">Mon espace personnel</li>
     ";
         // line 3
         $context['_parent'] = (array) $context;
@@ -57,6 +57,6 @@ class __TwigTemplate_f35852e6b1dd868d2691757fdea2167318f00bb24d03c3b5e4f9d0e54cd
 
     public function getDebugInfo()
     {
-        return array (  45 => 8,  38 => 6,  28 => 4,  23 => 3,  41 => 6,  31 => 4,  26 => 3,  22 => 2,  19 => 1,  175 => 81,  172 => 80,  165 => 44,  162 => 43,  158 => 41,  151 => 39,  148 => 37,  143 => 36,  140 => 35,  131 => 73,  120 => 60,  112 => 55,  103 => 48,  101 => 43,  98 => 42,  96 => 35,  91 => 33,  84 => 29,  80 => 27,  77 => 26,  67 => 21,  56 => 12,  53 => 11,  48 => 8,  42 => 5,  37 => 4,  34 => 3,);
+        return array (  45 => 8,  38 => 6,  28 => 4,  23 => 3,  19 => 1,);
     }
 }

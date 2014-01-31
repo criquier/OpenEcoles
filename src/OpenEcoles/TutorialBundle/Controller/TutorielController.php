@@ -18,8 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
-
 class TutorielController extends Controller{
 
     public function accueilAction(){
@@ -139,15 +137,19 @@ class TutorielController extends Controller{
         ));
     }
 
-    public function topTutoriel(){
+    public function topTutorielAction($param = null){
         $managerTuto = $this->get("open_ecoles_tutorial.gestionTutoriel");
-        $tutoriels = $managerTuto->getAllValidateTutorial();
+        $tutoriels = $managerTuto->getAllValidateTutoriel();
 
         $managerNote = $this->get("open_ecoles_tutorial.gestionNote");
         $top = $managerNote->getTopTutoriel($tutoriels,3);
-
+        if($param){
+            return $this->render("OpenEcolesTutorialBundle:Tutoriel:topTutorielCarousel.html.twig",array(
+                "tutoriels" => $top
+            ));
+        }
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:topTutoriel.html.twig",array(
-            "tutoriels"> $top
+            "tutoriels" => $top
         ));
     }
 
@@ -156,4 +158,5 @@ class TutorielController extends Controller{
         $tutoriels = $manager->getAllTutoriel();
         return $this->render("OpenEcolesTutorialBundle:Tutoriel:mesDocuments.html.twig");
     }
+
 }

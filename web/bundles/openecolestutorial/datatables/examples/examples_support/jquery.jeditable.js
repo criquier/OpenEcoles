@@ -402,7 +402,7 @@
         types: {
             defaults: {
                 element : function(settings, original) {
-                    var input = $('<input type="hidden"/>');
+                    var input = $('<input type="hidden"></input>');                
                     $(this).append(input);
                     return(input);
                 },

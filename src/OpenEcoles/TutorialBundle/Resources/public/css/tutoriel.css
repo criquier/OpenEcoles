@@ -14,6 +14,7 @@ article[class*="category"]{
     border:1px solid black;
     margin-bottom:2%;
     vertical-align: top;
+    box-shadow: 8px 8px 12px #aaa;
 }
 article > header > h3{
     text-align: center;
@@ -92,4 +93,10 @@ footer[class="afficher_plus"]{
     margin-bottom: 2%;
     margin-top: 2%;
     margin-left: 5%;
+}
+
+.tutorielTopCarousel{
+    color:white;
+    background-color: black;
+    z-index:100;
 }

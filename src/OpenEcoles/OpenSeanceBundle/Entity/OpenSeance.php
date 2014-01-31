@@ -38,6 +38,15 @@ class OpenSeance
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="dateDebut", type="datetime")
      */
     private $dateDebut;
@@ -210,5 +219,28 @@ class OpenSeance
     public function getOrganisateur()
     {
         return $this->organisateur;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return OpenSeance
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
     }
 }

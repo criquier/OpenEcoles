@@ -1,18 +1,34 @@
 {% extends "::base.html.twig" %}
 
-{% block entete %}
-    {% if error %}
-        <div>{{ error|trans }}</div>
-    {% endif %}
-    <a href="{{ path("fos_user_registration_register") }}" style="color:white" >s'inscrire</a> |
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesuser/css/user.css") }}"/>
+{%  endblock %}
 
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-        <input type="password" id="password" name="_password" required="required" />
-        <input type="submit" />
-    </form>
+{% block entete %}
+    <section class="formConnexion">
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if error %}
+                <div style="color:red">{{ error|trans }}</div>
+            {% endif %}
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            <input type="password" id="password" name="_password" required="required" />
+            <input type="submit" value="Ok" class="valider"/>
+            <br/>
+        </form>
+        <a href="{{ path("fos_user_registration_register") }}" >s'inscrire</a>
+    </section>
+
 {% endblock %}
 
 {% block body %}
+    <section class="diaporama">
+        Diaporama
+    </section>
+    <section class="previsu">
+        element intéréssant
+    </section>
 {% endblock %}

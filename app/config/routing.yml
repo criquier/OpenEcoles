@@ -1,3 +1,7 @@
+open_ecoles_whatsup:
+    resource: "@OpenEcolesWhatsupBundle/Resources/config/routing.yml"
+    prefix:   /
+
 open_ecoles_open_seance:
     resource: "@OpenEcolesOpenSeanceBundle/Resources/config/routing.yml"
     prefix:   /OpenSeances

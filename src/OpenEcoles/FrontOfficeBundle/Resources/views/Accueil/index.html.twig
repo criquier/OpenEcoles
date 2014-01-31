@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets %}
-    {{ parent()}}
+    {{ parent() }}
     <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesfrontoffice/css/style.css") }}"/>
 {% endblock %}
 
@@ -15,31 +15,46 @@
     </section>
 
     <section class="utilisateur">
-        {{ app.user.username }} <a href="{{ path("fos_user_security_logout") }}" style="color:white"class="déploiment">se déconnecter</a>
+        Hey {{ app.user.username }} !<br/><a href="{{ path("fos_user_security_logout") }}" style="color:rgb(121,182,23)" class="déploiment">Déconnection</a>
     </section>
 
 {% endblock %}
 
 {% block body %}
 <section style="margin-top: 1%;">
-    <nav>
+    <nav class="menuhorizontal">
         {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
     </nav>
     <section id="content">
         <nav id="menu">
             {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale")) }}
         </nav>
-        {%block section%}
-            {% for contenu in contenus %}
-                <section>
-                    {# {{  render(controller(contenu["action"])) }}#}
-                </section>
-            {% endfor %}
-        {%endblock%}
+        <section class="contenu">
+            {%block section%}
+
+                    {#{{  contenu["action"] }}#}
+                     {{  render(controller("OpenEcolesWhatsupBundle:Whatsup:whatsup")) }}
+            {%endblock%}
+        </section>
     </section>
     {% block recommandation %}
-        <section id="recommandation">
-                Syst&egrave;me de recommandation
+        <section class="recommandation">
+            <article>
+                <header>
+                    <h2>Top ...</h2>
+                </header>
+                <section class="recommandationContentTop">
+
+                </section>
+            </article>
+            <article>
+                <header>
+                    <h2>Live Friends</h2>
+                </header>
+                <section class="recommandationContentFriends">
+
+                </section>
+            </article>
         </section>
     {% endblock %}
 

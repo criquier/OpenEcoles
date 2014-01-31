@@ -129,7 +129,7 @@ open_ecoles_front_office:
                       nom: "Mes documents"
               contenu_central:
                   element1:
-                      render: "OpenEcolesTutorialBundle:Tutoriel:topTutoriel"
+                      render: ""
          bundleopenseance:
               parametre:
                   name: "OpenSeance"
@@ -141,7 +141,30 @@ open_ecoles_front_office:
               contenu_central:
                   element1:
                       render: ""
+         bundlewhatsup:
+              parametre:
+                  name: "Whatsup"
+              menu_horizontal:
+              menu_vertical:
+              contenu_central:
+                  element1:
+                      render: "OpenEcolesWhatsupBundle:Whatsup:whatsup"
+         bundleopenannonce:
+             parametre:
+                 name: "OpenAnnonce"
+             menu_horizontal:
+                 element1:
+                     lien: "open_ecoles_open_seance_homepage"
+                     nom: "OpenAnnonces"
+             menu_vertical:
+             contenu_central:
+                 element1:
+                     render: ""
 
+open_ecoles_whatsup:
+    publication:
+        entityTutoriel:
+            entity: "plop"
 
 
 open_ecoles_back_office:
@@ -161,3 +184,17 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: OpenEcoles\UserBundle\Entity\User
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }
