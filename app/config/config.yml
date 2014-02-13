@@ -112,7 +112,7 @@ open_ecoles_front_office:
                       nom: "Mon profil"
                       badge: false
                   element2:
-                      lien: "open_ecoles_tutorial_homepage"
+                      lien: "open_ecoles_user_homepage"
                       nom: "Mes messages"
                       badge: true
               contenu_central:

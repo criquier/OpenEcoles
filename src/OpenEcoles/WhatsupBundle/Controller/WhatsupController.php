@@ -28,7 +28,8 @@ class WhatsupController extends Controller{
         foreach($openseances as $openseance){
             $publications[$openseance->getDateCreation()->format("Y-m-d h:i:s")] = array("type"=>"openseance","object"=>$openseance,"date"=>$openseance->getDateCreation());
         }
-        ksort($publications);
+
+        krsort($publications);
         return $this->render("OpenEcolesWhatsupBundle:Whatsup:whatsup.html.twig",array(
             "publications" => $publications
         ));

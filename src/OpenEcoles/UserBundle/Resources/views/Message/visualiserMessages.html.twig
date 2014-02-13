@@ -1,0 +1,55 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesuser/css/user.css") }}"/>
+{% endblock %}
+
+{% block section %}
+    <h4>Vos messages</h4>
+    <div class="bulleDest">bjr <div class="arrow_inner_dest"></div></div>
+    <div class="bulleExp">bjt ca va<div class="arrow_inner_exp"></div></div>
+    <div class="bulleDest">oui et toi? <div class="arrow_inner_dest"></div></div>
+    <div class="bulleExp">ca va<div class="arrow_inner_exp"></div></div>
+
+    {#On affiche la liste des messages de l'utilisateur#}
+
+    <section class="conversations" >
+        {% for message in messages %}
+            <article class="conversation">
+                <a href="{{ path("open_ecoles_user_conversation_messsage",
+                {'idauteur':app.user.id, 'iddestinataire': message.auteur.id }) }}">
+                    <span>
+                        {{ message.auteur.username}}
+                        {{ message.contenu|truncate(50) }}
+                        {{ message.date|date('d/m/Y H:i:s') }}
+                    </span>
+                </a>
+            </article>
+        {% else %}
+            <p>Votre boite de reception est vide</p>
+        {% endfor %}
+    </section>
+    {# {% include "OpenEcolesUserBundle:Message:formulaire.html.twig" %} #}
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script type="text/javascript">
+        $("#detailmessage").click(function(){
+            $.ajax({
+                type:"POST",
+            {# url: "{{ path("open_ecoles_user_conversation_messsage",{'idauteur':user.id }) }}",#}
+                data:{
+                    //'idauteur':{{ user.id }}
+
+                },
+                success:function(data){
+                    $('sel').load('visualiserConversation.html.twig');//,{ id:50, nom: 'durand'});
+                },
+                error: function() {
+                    alert('La requête n\'a pas abouti'); }
+            });
+        });
+    </script>
+{% endblock %}

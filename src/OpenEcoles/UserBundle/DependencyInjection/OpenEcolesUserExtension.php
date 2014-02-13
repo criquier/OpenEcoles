@@ -22,7 +22,7 @@ class OpenEcolesUserExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $connexions = $configs['connexion'];
+        $connexions = $config['connexion'];
 
         $container->setParameter("elements",$connexions);
 

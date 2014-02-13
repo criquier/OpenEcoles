@@ -1,0 +1,90 @@
+{% extends "OpenEcolesFrontOfficeBundle:Accueil:index.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolestutorial/css/tutoriel.css") }}"/>
+{% endblock %}
+{% block section %}
+    {#On affiche la liste des messages de l'utilisateur#}
+    <section id="conversation">
+
+    </section>
+    {# {% include "OpenEcolesUserBundle:Message:formulaire.html.twig" %} #}
+    <input id="message" type="text"  >
+    <input id="test" type="text"  >
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        // Fonction qui permet de poster un message
+        // Cette fonction utilise ajax
+        function postMessage() {
+            // On lance la requête ajax
+            // type: POST > nous envoyons le message
+            // On encode le message pour faire passer les caractères spéciaux comme +
+            var message = encodeURIComponent($("#message").val());
+            $.ajax({
+                type: "POST",
+                url: "{{ path("open_ecoles_user_envoie_messsage",
+                        {'idauteur':idauteur, 'iddestinataire': iddestinataire }) }}",
+                data:{
+                    message:$("#message").val()
+                },
+                success: function(data){
+                    // Si la réponse est true, tout s'est bien passé,
+                    // Si non, on a une erreur et on l'affiche
+
+                        // On vide la zone de texte
+                        $("#message").val('');
+                        $("#test").val(data["message"]);
+                        // $("#responsePost").slideUp("slow").html('');
+
+                    // $("#responsePost").html(msg).slideDown("slow");
+                    // on resélectionne la zone de texte, en cas d'utilisation du bouton "Envoyer"
+                        $("#message").focus();
+                },
+                error: function(msg){
+                    // On alerte d'une erreur
+                    alert('Erreur');
+                }
+            });
+        }
+        //alert('je suis dans le block');
+        $("#message").keyup(function(e) {
+            if(e.keyCode == 13) { // KeyCode de la touche entrée
+               {
+                  // on post le message car l'utilisarteur a appuyer sur la touche entrée
+                  // alert('vous avez appuyé sur entrée');
+                    postMessage();
+               }
+           }
+        });
+
+        // fonction qui permet de reactuliser les chat pour voir les derniers messages reçus
+        var reloadTime = 1000;
+        var scrollBar = false;
+        function getMessages() {
+
+            // On lance la requête ajax
+            $.getJSON("{{path("open_ecoles_user_consulte_messsage",
+                {'idauteur':app.user.id, 'iddestinataire':iddestinataire }) }}",
+             function(data) {
+                 $("#conversation").contents('');
+                 $("#conversation").html(data['messages']);
+            });
+        }
+        // Au chargement de la page, on effectue cette fonction
+        $(document).ready(function() {
+
+            //if(document.getElementById('conversation')) {
+                // actualisation des messages
+                window.setInterval(getMessages, reloadTime);
+                // on sélectionne la zone de texte
+                 $("#message").focus();
+           // }
+        });
+    </script>
+{% endblock %}

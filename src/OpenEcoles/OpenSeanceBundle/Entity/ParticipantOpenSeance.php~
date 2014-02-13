@@ -1,0 +1,49 @@
+<?php
+
+namespace OpenEcoles\OpenSeanceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ParticipantOpenSeance
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="OpenEcoles\OpenSeanceBundle\Entity\ParticipantOpenSeanceRepository")
+ */
+class ParticipantOpenSeance
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\UserBundle\Entity\User")
+     */
+    private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="OpenEcoles\OpenSeanceBundle\Entity\OpenSeance")
+     */
+    private $openseance;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    
+}

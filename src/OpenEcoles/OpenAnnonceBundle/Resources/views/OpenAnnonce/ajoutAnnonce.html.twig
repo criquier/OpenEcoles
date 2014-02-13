@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent()}}
+    <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset("bundles/openecolesfrontoffice/css/style.css") }}"/>
+{% endblock %}
+
+{% block entete %}
+
+    <section class="research">
+        <div class="input-group">
+            <input type="text" placeholder="Votre recherche" class="form-control">
+            <input type="button" value="Rechercher" class="button-recherche"/>
+        </div>
+    </section>
+
+    <section class="utilisateur">
+        {{ app.user.username }} <a href="{{ path("fos_user_security_logout") }}" style="color:white"class="déploiment">se déconnecter</a>
+    </section>
+
+{% endblock %}
+
+{% block body %}
+<section style="margin-top: 1%;">
+    <nav>
+        {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
+    </nav>
+    <section id="content">
+        <nav id="menu">
+            {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale")) }}
+        </nav>
+        {%block section%}
+            <a href="{{ path('open_ecoles_open_annonce_homepage') }}">retour au Open Annonce</a>
+            <div class="well">
+                <form method="post" {{ form_enctype(form) }}>
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-primary" />
+                </form>
+            </div>
+        {%endblock%}
+    </section>
+    {% block recommandation %}
+        <section id="recommandation">
+            Syst&egrave;me de recommandation
+        </section>
+    {% endblock %}
+
+</section>
+    <!--
+
+    <div class="conteneur">
+
+        <nav>
+            {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationHorizontale")) }}
+        </nav>
+
+        <section class ="espace_personnel">
+            <nav id="menu">
+                {{ render(controller("OpenEcolesFrontOfficeBundle:Accueil:navigationVerticale")) }}
+            </nav>
+        </section>
+
+        <section class ="content">
+            <p style="text-align: center">Bienvenue sur le site Open Ecole - Contenu du site (aggrandissement automatique afin d'eviter les 300px-450px etc etc</p>
+        </section>
+
+        {# % block recommandation %}
+        <section class ="systeme_de_recommandation">
+            <p>Syst&egrave;me de recommandation !</p>
+        </section>
+        {% endblock %}#}
+
+    </div>
+    -->
+
+
+    {% endblock %}
+
+    {% block footer %}
+        <p class="frontfooter">
+            <a href="#">Qui sommes nous </a> | <a href="#">conditions d'utilisation</a> | <a href="#">partenaires</a> | <a href="#">contact</a>
+            <br/>&reg;Copyright OpenEcoles 2013 tout droits r&eacute;serv&eacute;s
+        </p>
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}

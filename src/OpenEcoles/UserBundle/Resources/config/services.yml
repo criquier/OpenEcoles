@@ -5,3 +5,26 @@ services:
 #    open_ecoles_user.example:
 #        class: %open_ecoles_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    OpenEcoles_user.registration.form.type:
+        class: OpenEcoles\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: OpenEcoles_user_registration }
+
+# gere les operation de BD liées aux Messages
+    OpenEcoles_user.gestionBDMessages:
+        class: OpenEcoles\UserBundle\Services\MessageBDServices
+        arguments: [@doctrine.orm.entity_manager]
+
+# gere les operation de BD liées aux Users
+    OpenEcoles_user.gestionBDUsers:
+        class: OpenEcoles\UserBundle\Services\UserBDServices
+        arguments: [@doctrine.orm.entity_manager]
+
+ #Service permettant de gerer les envoies de messages
+    OpenEcoles_user.gestionEnvoieMessages:
+        class: OpenEcoles\UserBundle\Services\MessageListenerService
+        arguments: [@OpenEcoles_user.gestionBDMessages, @OpenEcoles_user.gestionBDUsers]
+        tags:
+            - { name: kernel.event_listener, event: openecolesuser.gestionnaireutilisateur.post_message, method: onMessagePost }

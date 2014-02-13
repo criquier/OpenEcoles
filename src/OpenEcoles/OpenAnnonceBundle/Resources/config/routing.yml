@@ -1,0 +1,7 @@
+open_ecoles_open_annonce_homepage:
+    pattern: /
+    defaults: { _controller: OpenEcolesOpenAnnonceBundle:OpenAnnonce:Index }
+
+open_ecoles_open_annonce_ajoutannonce:
+    pattern: /ajouterAnnonce
+    defaults: { _controller: OpenEcolesOpenAnnonceBundle:OpenAnnonce:Ajouter }

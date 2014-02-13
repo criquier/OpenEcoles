@@ -19,7 +19,12 @@
             <input type="submit" value="Ok" class="valider"/>
             <br/>
         </form>
-        <a href="{{ path("fos_user_registration_register") }}" >s'inscrire</a>
+        <a id="inscription" href="#" >s'inscrire</a>
+        <section id="inscription">
+            <div class="bandeauVert"></div>
+            <article class="formulaireInscription">
+            </article>
+        </section>
     </section>
 
 {% endblock %}
@@ -31,4 +36,22 @@
     <section class="previsu">
         element intéréssant
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $("#inscription").click(function(){
+            $.ajax({
+                type:"GET",
+                url:" {{ path("fos_user_registration_register") }}",
+                success:function(data){
+                    alert(data)
+                    $(".formulaireInscription").empty();
+                    $(".formulaireInscription").html(data);
+                }
+            })
+        })
+
+    </script>
 {% endblock %}
