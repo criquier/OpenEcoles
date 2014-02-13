@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new OpenEcoles\UserBundle\OpenEcolesUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new OpenEcoles\OpenAnnoncesBundle\OpenEcolesOpenAnnoncesBundle(),
+            new OpenEcoles\OpenAnnonceBundle\OpenEcolesOpenAnnonceBundle(),
             new OpenEcoles\OpenSeanceBundle\OpenEcolesOpenSeanceBundle(),
         );
 

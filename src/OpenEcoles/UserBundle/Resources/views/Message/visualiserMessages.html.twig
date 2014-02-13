@@ -23,22 +23,5 @@
 {% endblock %}
 
 {% block javascripts%}
-    {{ parent() }}
-    <script type="text/javascript">
-        $("#detailmessage").click(function(){
-            $.ajax({
-                type:"POST",
-            {# url: "{{ path("open_ecoles_user_conversation_messsage",{'idauteur':user.id }) }}",#}
-                data:{
-                    //'idauteur':{{ user.id }}
 
-                },
-                success:function(data){
-                    $('sel').load('visualiserConversation.html.twig');//,{ id:50, nom: 'durand'});
-                },
-                error: function() {
-                    alert('La requête n\'a pas abouti'); }
-            });
-        });
-    </script>
 {% endblock %}

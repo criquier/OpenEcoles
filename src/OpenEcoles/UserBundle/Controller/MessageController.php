@@ -95,9 +95,13 @@ class MessageController extends Controller
 
             // on recupère l'id du l'utilisateur courant
             foreach( $messages as $message )  {
-              $resultat.='Auteur: '.$message->getAuteur()->getUsername().'   ';
-              $resultat.=$message->getDate()->format('d/m/Y H:i:s').'  ';
-              $resultat.=$message->getContenu().'</br>';
+                if($message->getAuteur()->getId()==$idauteur){
+                    $resultat.='Moi: ';
+                }else{
+                    $resultat.=$message->getAuteur()->getUsername().'   ';
+                }
+                $resultat.=$message->getDate()->format('d/m/Y H:i:s').'  ';
+                $resultat.=$message->getContenu().'</br>';
             }
 
 

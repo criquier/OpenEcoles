@@ -111,7 +111,7 @@ open_ecoles_front_office:
                       lien: "fos_user_profile_show"
                       nom: "Mon profil"
                   element2:
-                      lien: "open_ecoles_tutorial_homepage"
+                      lien: "open_ecoles_user_homepage"
                       nom: "Mes messages"
               contenu_central:
                   element1:
