@@ -13,7 +13,7 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
             'stylesheets' => array($this, 'block_stylesheets'),
             'entete' => array($this, 'block_entete'),
             'body' => array($this, 'block_body'),
-            'javascripts' => array($this, 'block_javascripts'),
+            'javascript' => array($this, 'block_javascript'),
         );
     }
 
@@ -75,7 +75,7 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
             <br/>
         </form>
         <a id=\"inscription\" href=\"#\" >s'inscrire</a>
-        <section id=\"inscription\">
+        <section class=\"inscription\">
             <div class=\"bandeauVert\"></div>
             <article class=\"formulaireInscription\">
             </article>
@@ -99,29 +99,13 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
     }
 
     // line 41
-    public function block_javascripts($context, array $blocks = array())
+    public function block_javascript($context, array $blocks = array())
     {
         // line 42
         echo "    ";
-        $this->displayParentBlock("javascripts", $context, $blocks);
+        $this->displayParentBlock("javascript", $context, $blocks);
         echo "
-    <script type=\"text/javascript\">
-        \$(\"#inscription\").click(function(){
-            \$.ajax({
-                type:\"GET\",
-                url:\" ";
-        // line 47
-        echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
-        echo "\",
-                success:function(data){
-                    alert(data)
-                    \$(\".formulaireInscription\").empty();
-                    \$(\".formulaireInscription\").html(data);
-                }
-            })
-        })
-
-    </script>
+    <script type=\"text/javascript\"></script>
 ";
     }
 
@@ -137,6 +121,6 @@ class __TwigTemplate_9b72abc4b06f5d8d5346de65e1d8bdf34d70724f2581025b0cc2b37a0e8
 
     public function getDebugInfo()
     {
-        return array (  114 => 47,  105 => 42,  102 => 41,  92 => 33,  89 => 32,  71 => 17,  66 => 15,  63 => 14,  57 => 12,  55 => 11,  51 => 10,  48 => 9,  45 => 8,  39 => 5,  34 => 4,  31 => 3,);
+        return array (  105 => 42,  102 => 41,  92 => 33,  89 => 32,  71 => 17,  66 => 15,  63 => 14,  57 => 12,  55 => 11,  51 => 10,  48 => 9,  45 => 8,  39 => 5,  34 => 4,  31 => 3,);
     }
 }

@@ -153,6 +153,7 @@ class appDevDebugProjectContainer extends Container
             'open_ecoles_tutorial.gestionnote' => 'getOpenEcolesTutorial_GestionnoteService',
             'open_ecoles_tutorial.gestiontutoriel' => 'getOpenEcolesTutorial_GestiontutorielService',
             'open_ecoles_tutorial.validationtutoriel' => 'getOpenEcolesTutorial_ValidationtutorielService',
+            'open_ecoles_whatsup.tri' => 'getOpenEcolesWhatsup_TriService',
             'openecoles_user.gestionbdmessages' => 'getOpenecolesUser_GestionbdmessagesService',
             'openecoles_user.gestionbdusers' => 'getOpenecolesUser_GestionbdusersService',
             'openecoles_user.gestionenvoiemessages' => 'getOpenecolesUser_GestionenvoiemessagesService',
@@ -249,7 +250,10 @@ class appDevDebugProjectContainer extends Container
             'twig' => 'getTwigService',
             'twig.controller.exception' => 'getTwig_Controller_ExceptionService',
             'twig.exception_listener' => 'getTwig_ExceptionListenerService',
+            'twig.extension.debug' => 'getTwig_Extension_DebugService',
+            'twig.extension.intl' => 'getTwig_Extension_IntlService',
             'twig.extension.stfalcon_tinymce' => 'getTwig_Extension_StfalconTinymceService',
+            'twig.extension.text' => 'getTwig_Extension_TextService',
             'twig.loader' => 'getTwig_LoaderService',
             'twig.translation.extractor' => 'getTwig_Translation_ExtractorService',
             'uri_signer' => 'getUriSignerService',
@@ -286,7 +290,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAnnotationReaderService()
     {
-        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/annotations', true);
+        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/annotations', true);
     }
 
     /**
@@ -299,9 +303,9 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetManagerService()
     {
-        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/assetic/config'), true)));
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/assetic/config'), true)));
 
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/opt/lampp/htdocs/OpenEcoles/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
 
         return $instance;
     }
@@ -387,7 +391,7 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('kernel');
         $b = $this->get('templating.filename_parser');
 
-        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/opt/lampp/htdocs/OpenEcoles/app/Resources');
+        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources');
 
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine'))));
     }
@@ -566,44 +570,40 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('annotation_reader');
 
         $b = new \Doctrine\Common\Cache\ArrayCache();
-        $b->setNamespace('sf2orm_default_a2c9bcc0aa38df6d0118a2e1be1a7005');
+        $b->setNamespace('sf2orm_default_491197df4ad969681b98e4697f3f31f8');
 
         $c = new \Doctrine\Common\Cache\ArrayCache();
-        $c->setNamespace('sf2orm_default_a2c9bcc0aa38df6d0118a2e1be1a7005');
+        $c->setNamespace('sf2orm_default_491197df4ad969681b98e4697f3f31f8');
 
         $d = new \Doctrine\Common\Cache\ArrayCache();
-        $d->setNamespace('sf2orm_default_a2c9bcc0aa38df6d0118a2e1be1a7005');
+        $d->setNamespace('sf2orm_default_491197df4ad969681b98e4697f3f31f8');
 
-        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/TutorialBundle/Entity', 1 => '/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/UserBundle/Entity', 2 => '/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/OpenSeanceBundle/Entity'));
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\TutorialBundle\\Entity', 1 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\UserBundle\\Entity', 2 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\OpenSeanceBundle\\Entity'));
 
-        $f = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array('/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine' => 'FOS\\UserBundle\\Entity'));
+        $f = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\doctrine' => 'FOS\\UserBundle\\Entity'));
         $f->setGlobalBasename('mapping');
 
-        $g = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver(array('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/OpenAnnonceBundle/Resources/config/doctrine' => 'OpenEcoles\\OpenAnnonceBundle\\Entity'));
-        $g->setGlobalBasename('mapping');
+        $g = new \Doctrine\ORM\Mapping\Driver\DriverChain();
+        $g->addDriver($e, 'OpenEcoles\\TutorialBundle\\Entity');
+        $g->addDriver($e, 'OpenEcoles\\UserBundle\\Entity');
+        $g->addDriver($e, 'OpenEcoles\\OpenSeanceBundle\\Entity');
+        $g->addDriver($f, 'FOS\\UserBundle\\Entity');
+        $g->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\doctrine\\model' => 'FOS\\UserBundle\\Model'), '.orm.xml')), 'FOS\\UserBundle\\Model');
 
-        $h = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $h->addDriver($e, 'OpenEcoles\\TutorialBundle\\Entity');
-        $h->addDriver($e, 'OpenEcoles\\UserBundle\\Entity');
-        $h->addDriver($e, 'OpenEcoles\\OpenSeanceBundle\\Entity');
-        $h->addDriver($f, 'FOS\\UserBundle\\Entity');
-        $h->addDriver($g, 'OpenEcoles\\OpenAnnonceBundle\\Entity');
-        $h->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array('/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine/model' => 'FOS\\UserBundle\\Model'), '.orm.xml')), 'FOS\\UserBundle\\Model');
+        $h = new \Doctrine\ORM\Configuration();
+        $h->setEntityNamespaces(array('OpenEcolesTutorialBundle' => 'OpenEcoles\\TutorialBundle\\Entity', 'OpenEcolesUserBundle' => 'OpenEcoles\\UserBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'OpenEcolesOpenSeanceBundle' => 'OpenEcoles\\OpenSeanceBundle\\Entity'));
+        $h->setMetadataCacheImpl($b);
+        $h->setQueryCacheImpl($c);
+        $h->setResultCacheImpl($d);
+        $h->setMetadataDriverImpl($g);
+        $h->setProxyDir('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/doctrine/orm/Proxies');
+        $h->setProxyNamespace('Proxies');
+        $h->setAutoGenerateProxyClasses(true);
+        $h->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $h->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $h->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
 
-        $i = new \Doctrine\ORM\Configuration();
-        $i->setEntityNamespaces(array('OpenEcolesTutorialBundle' => 'OpenEcoles\\TutorialBundle\\Entity', 'OpenEcolesUserBundle' => 'OpenEcoles\\UserBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'OpenEcolesOpenAnnonceBundle' => 'OpenEcoles\\OpenAnnonceBundle\\Entity', 'OpenEcolesOpenSeanceBundle' => 'OpenEcoles\\OpenSeanceBundle\\Entity'));
-        $i->setMetadataCacheImpl($b);
-        $i->setQueryCacheImpl($c);
-        $i->setResultCacheImpl($d);
-        $i->setMetadataDriverImpl($h);
-        $i->setProxyDir('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/doctrine/orm/Proxies');
-        $i->setProxyNamespace('Proxies');
-        $i->setAutoGenerateProxyClasses(true);
-        $i->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $i->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $i->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
-
-        $this->services['doctrine.orm.default_entity_manager'] = $instance = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $i);
+        $this->services['doctrine.orm.default_entity_manager'] = $instance = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $h);
 
         $this->get('doctrine.orm.default_manager_configurator')->configure($instance);
 
@@ -703,7 +703,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFileLocatorService()
     {
-        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/opt/lampp/htdocs/OpenEcoles/app/Resources');
+        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources');
     }
 
     /**
@@ -1692,7 +1692,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getMonolog_Handler_MainService()
     {
-        return $this->services['monolog.handler.main'] = new \Monolog\Handler\StreamHandler('/opt/lampp/htdocs/OpenEcoles/app/logs/dev.log', 100, true);
+        return $this->services['monolog.handler.main'] = new \Monolog\Handler\StreamHandler('C:/wamp/www/ProjetTechnique_OpenEcoles/app/logs/dev.log', 100, true);
     }
 
     /**
@@ -1876,16 +1876,29 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'open_ecoles_open_seance_actionbd' service.
+     * Gets the 'open_ecoles_open_seance.gestionopenseance' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance A OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance instance.
+     * @return OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance A OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance instance.
      */
-    protected function getOpenEcolesOpenSeanceActionbdService()
+    protected function getOpenEcolesOpenSeance_GestionopenseanceService()
     {
-        return $this->services['open_ecoles_open_seance_actionbd'] = new \OpenEcoles\TutorialBundle\Services\ActionBDOpenSeance($this->get('doctrine.orm.default_entity_manager'));
+        return $this->services['open_ecoles_open_seance.gestionopenseance'] = new \OpenEcoles\OpenSeanceBundle\Services\ActionBDOpenSeance($this->get('doctrine.orm.default_entity_manager'));
+    }
+
+    /**
+     * Gets the 'open_ecoles_open_seance.participationopenseance' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance A OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance instance.
+     */
+    protected function getOpenEcolesOpenSeance_ParticipationopenseanceService()
+    {
+        return $this->services['open_ecoles_open_seance.participationopenseance'] = new \OpenEcoles\OpenSeanceBundle\Services\ActionBDParticipantOpenSeance($this->get('doctrine.orm.default_entity_manager'));
     }
 
     /**
@@ -1951,6 +1964,19 @@ class appDevDebugProjectContainer extends Container
     protected function getOpenEcolesTutorial_ValidationtutorielService()
     {
         return $this->services['open_ecoles_tutorial.validationtutoriel'] = new \OpenEcoles\TutorialBundle\Services\validateTutoriel();
+    }
+
+    /**
+     * Gets the 'open_ecoles_whatsup.tri' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return OpenEcoles\WhatsupBundle\Services\PublicationTri A OpenEcoles\WhatsupBundle\Services\PublicationTri instance.
+     */
+    protected function getOpenEcolesWhatsup_TriService()
+    {
+        return $this->services['open_ecoles_whatsup.tri'] = new \OpenEcoles\WhatsupBundle\Services\PublicationTri();
     }
 
     /**
@@ -2026,7 +2052,7 @@ class appDevDebugProjectContainer extends Container
         $d = new \Doctrine\Bundle\DoctrineBundle\DataCollector\DoctrineDataCollector($this->get('doctrine'));
         $d->addLogger('default', $this->get('doctrine.dbal.logger.profiling.default'));
 
-        $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:/opt/lampp/htdocs/OpenEcoles/app/cache/dev/profiler', '', '', 86400), $a);
+        $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/profiler', '', '', 86400), $a);
 
         $instance->add($c);
         $instance->add($this->get('data_collector.request'));
@@ -2110,7 +2136,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getRouterService()
     {
-        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/assetic/routing.yml', array('cache_dir' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev', 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/assetic/routing.yml', array('cache_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev', 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -2244,7 +2270,7 @@ class appDevDebugProjectContainer extends Container
         $q = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($o, array('default_target_path' => '/', 'always_use_default_target_path' => false, 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $q->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $p, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $o, 'main', $q, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $o, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52eb6eb59a059', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $o, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $p, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $o, 'main', $q, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $o, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52fc04e4ef780', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $o, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -2270,7 +2296,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_SecureRandomService()
     {
-        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/secure_random.seed', $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/secure_random.seed', $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
 
     /**
@@ -2296,7 +2322,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSensioDistribution_WebconfiguratorService()
     {
-        return $this->services['sensio_distribution.webconfigurator'] = new \Sensio\Bundle\DistributionBundle\Configurator\Configurator('/opt/lampp/htdocs/OpenEcoles/app');
+        return $this->services['sensio_distribution.webconfigurator'] = new \Sensio\Bundle\DistributionBundle\Configurator\Configurator('C:/wamp/www/ProjetTechnique_OpenEcoles/app');
     }
 
     /**
@@ -2444,7 +2470,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSession_HandlerService()
     {
-        return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/sessions');
+        return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/sessions');
     }
 
     /**
@@ -2457,7 +2483,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSession_Storage_FilesystemService()
     {
-        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/sessions');
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/sessions');
     }
 
     /**
@@ -2703,7 +2729,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTemplating_Helper_CodeService()
     {
-        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, '/opt/lampp/htdocs/OpenEcoles/app', 'UTF-8');
+        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, 'C:/wamp/www/ProjetTechnique_OpenEcoles/app', 'UTF-8');
     }
 
     /**
@@ -3195,7 +3221,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTranslator_DefaultService()
     {
-        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/translations', 'debug' => true));
+        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/translations', 'debug' => true));
     }
 
     /**
@@ -3213,13 +3239,12 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension($this->get('twig.extension.text'));
         $instance->addExtension($this->get('twig.extension.intl'));
         $instance->addExtension($this->get('twig.extension.debug'));
-
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\ActionsExtension($this));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/opt/lampp/htdocs/OpenEcoles/app', 'UTF-8'));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, 'C:/wamp/www/ProjetTechnique_OpenEcoles/app', 'UTF-8'));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
@@ -3259,6 +3284,32 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'twig.extension.debug' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Debug A Twig_Extensions_Extension_Debug instance.
+     */
+    protected function getTwig_Extension_DebugService()
+    {
+        return $this->services['twig.extension.debug'] = new \Twig_Extensions_Extension_Debug();
+    }
+
+    /**
+     * Gets the 'twig.extension.intl' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Intl A Twig_Extensions_Extension_Intl instance.
+     */
+    protected function getTwig_Extension_IntlService()
+    {
+        return $this->services['twig.extension.intl'] = new \Twig_Extensions_Extension_Intl();
+    }
+
+    /**
      * Gets the 'twig.extension.stfalcon_tinymce' service.
      *
      * This service is shared.
@@ -3269,6 +3320,19 @@ class appDevDebugProjectContainer extends Container
     protected function getTwig_Extension_StfalconTinymceService()
     {
         return $this->services['twig.extension.stfalcon_tinymce'] = new \Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension($this);
+    }
+
+    /**
+     * Gets the 'twig.extension.text' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extensions_Extension_Text A Twig_Extensions_Extension_Text instance.
+     */
+    protected function getTwig_Extension_TextService()
+    {
+        return $this->services['twig.extension.text'] = new \Twig_Extensions_Extension_Text();
     }
 
     /**
@@ -3283,26 +3347,26 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
 
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/app/Resources/TwigBundle/views', 'Twig');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/BackOfficeBundle/Resources/views', 'OpenEcolesBackOffice');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/FrontOfficeBundle/Resources/views', 'OpenEcolesFrontOffice');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/AnnexeBundle/Resources/views', 'OpenEcolesAnnexe');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/TutorialBundle/Resources/views', 'OpenEcolesTutorial');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/stfalcon/tinymce-bundle/Stfalcon/Bundle/TinymceBundle/Resources/views', 'StfalconTinymce');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/UserBundle/Resources/views', 'OpenEcolesUser');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views', 'FOSUser');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/OpenAnnonceBundle/Resources/views', 'OpenEcolesOpenAnnonce');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/src/OpenEcoles/OpenSeanceBundle/Resources/views', 'OpenEcolesOpenSeance');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/app/Resources/views');
-        $instance->addPath('/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
->>>>>>> 19866180cc03c20536f9a14c61320fcb223a8dbc
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\FrameworkBundle/Resources/views', 'Framework');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\SecurityBundle/Resources/views', 'Security');
+        $instance->addPath('C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources/TwigBundle/views', 'Twig');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views', 'Twig');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views', 'Swiftmailer');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\BackOfficeBundle/Resources/views', 'OpenEcolesBackOffice');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\FrontOfficeBundle/Resources/views', 'OpenEcolesFrontOffice');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\AnnexeBundle/Resources/views', 'OpenEcolesAnnexe');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\TutorialBundle/Resources/views', 'OpenEcolesTutorial');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\stfalcon\\tinymce-bundle\\Stfalcon\\Bundle\\TinymceBundle/Resources/views', 'StfalconTinymce');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\UserBundle/Resources/views', 'OpenEcolesUser');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle/Resources/views', 'FOSUser');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\OpenAnnoncesBundle/Resources/views', 'OpenEcolesOpenAnnonces');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\OpenSeanceBundle/Resources/views', 'OpenEcolesOpenSeance');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\src\\OpenEcoles\\WhatsupBundle/Resources/views', 'OpenEcolesWhatsup');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
+        $instance->addPath('C:/wamp/www/ProjetTechnique_OpenEcoles/app/Resources/views');
+        $instance->addPath('C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Bridge\\Twig/Resources/views/Form');
 
         return $instance;
     }
@@ -3428,7 +3492,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetFactoryService()
     {
-        $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), '/opt/lampp/htdocs/OpenEcoles/app/../web', true);
+        $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/../web', true);
 
         $instance->addWorker(new \Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker());
 
@@ -3449,7 +3513,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_CacheService()
     {
-        return $this->services['assetic.cache'] = new \Assetic\Cache\FilesystemCache('/opt/lampp/htdocs/OpenEcoles/app/cache/dev/assetic/assets');
+        return $this->services['assetic.cache'] = new \Assetic\Cache\FilesystemCache('C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/assetic/assets');
     }
 
     /**
@@ -3568,7 +3632,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52eb6eb59a059')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52fc04e4ef780')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3657,7 +3721,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTemplating_LocatorService()
     {
-        return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/opt/lampp/htdocs/OpenEcoles/app/cache/dev');
+        return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev');
     }
 
     /**
@@ -3691,7 +3755,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getValidator_Mapping_ClassMetadataFactoryService()
     {
-        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml', 1 => '/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml', 2 => '/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
+        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Form/Resources/config/validation.xml', 1 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\validation.xml', 2 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\validation\\orm.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
     }
 
     /**
@@ -3745,12 +3809,12 @@ class appDevDebugProjectContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-            'kernel.root_dir' => '/opt/lampp/htdocs/OpenEcoles/app',
+            'kernel.root_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
             'kernel.name' => 'app',
-            'kernel.cache_dir' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev',
-            'kernel.logs_dir' => '/opt/lampp/htdocs/OpenEcoles/app/logs',
+            'kernel.cache_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev',
+            'kernel.logs_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/logs',
             'kernel.bundles' => array(
                 'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
                 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
@@ -3767,9 +3831,9 @@ class appDevDebugProjectContainer extends Container
                 'StfalconTinymceBundle' => 'Stfalcon\\Bundle\\TinymceBundle\\StfalconTinymceBundle',
                 'OpenEcolesUserBundle' => 'OpenEcoles\\UserBundle\\OpenEcolesUserBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
-
-                'OpenEcolesOpenAnnonceBundle' => 'OpenEcoles\\OpenAnnonceBundle\\OpenEcolesOpenAnnonceBundle',
+                'OpenEcolesOpenAnnoncesBundle' => 'OpenEcoles\\OpenAnnoncesBundle\\OpenEcolesOpenAnnoncesBundle',
                 'OpenEcolesOpenSeanceBundle' => 'OpenEcoles\\OpenSeanceBundle\\OpenEcolesOpenSeanceBundle',
+                'OpenEcolesWhatsupBundle' => 'OpenEcoles\\WhatsupBundle\\OpenEcolesWhatsupBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
@@ -3834,7 +3898,7 @@ class appDevDebugProjectContainer extends Container
             'debug.errors_logger_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ErrorsLoggerListener',
             'debug.event_dispatcher.class' => 'Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher',
             'debug.stopwatch.class' => 'Symfony\\Component\\Stopwatch\\Stopwatch',
-            'debug.container.dump' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/appDevDebugProjectContainer.xml',
+            'debug.container.dump' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/appDevDebugProjectContainer.xml',
             'debug.controller_resolver.class' => 'Symfony\\Component\\HttpKernel\\Controller\\TraceableControllerResolver',
             'kernel.secret' => 'secretOpenEcole',
             'kernel.http_method_override' => true,
@@ -3856,7 +3920,7 @@ class appDevDebugProjectContainer extends Container
             'session.storage.options' => array(
 
             ),
-            'session.save_path' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/sessions',
+            'session.save_path' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/sessions',
             'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
             'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
             'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
@@ -3912,9 +3976,9 @@ class appDevDebugProjectContainer extends Container
             'validator.mapping.loader.yaml_files_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFilesLoader',
             'validator.validator_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Validator\\ConstraintValidatorFactory',
             'validator.mapping.loader.xml_files_loader.mapping_files' => array(
-                0 => '/opt/lampp/htdocs/OpenEcoles/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
-                1 => '/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml',
-                2 => '/opt/lampp/htdocs/OpenEcoles/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml',
+                0 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Form/Resources/config/validation.xml',
+                1 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\validation.xml',
+                2 => 'C:\\wamp\\www\\ProjetTechnique_OpenEcoles\\vendor\\friendsofsymfony\\user-bundle\\FOS\\UserBundle\\Resources\\config\\validation\\orm.xml',
             ),
             'validator.mapping.loader.yaml_files_loader.mapping_files' => array(
 
@@ -3933,7 +3997,7 @@ class appDevDebugProjectContainer extends Container
             'data_collector.router.class' => 'Symfony\\Bundle\\FrameworkBundle\\DataCollector\\RouterDataCollector',
             'profiler_listener.only_exceptions' => false,
             'profiler_listener.only_master_requests' => false,
-            'profiler.storage.dsn' => 'file:/opt/lampp/htdocs/OpenEcoles/app/cache/dev/profiler',
+            'profiler.storage.dsn' => 'file:C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/profiler',
             'profiler.storage.username' => '',
             'profiler.storage.password' => '',
             'profiler.storage.lifetime' => 86400,
@@ -3957,7 +4021,7 @@ class appDevDebugProjectContainer extends Container
             'router.request_context.host' => 'localhost',
             'router.request_context.scheme' => 'http',
             'router.request_context.base_url' => '',
-            'router.resource' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/assetic/routing.yml',
+            'router.resource' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/assetic/routing.yml',
             'router.cache_class_prefix' => 'appDev',
             'request_listener.http_port' => 80,
             'request_listener.https_port' => 443,
@@ -4067,7 +4131,7 @@ class appDevDebugProjectContainer extends Container
                 'exception_controller' => 'twig.controller.exception:showAction',
                 'autoescape_service' => NULL,
                 'autoescape_service_method' => NULL,
-                'cache' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/twig',
+                'cache' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/twig',
                 'charset' => 'UTF-8',
                 'paths' => array(
 
@@ -4122,7 +4186,7 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
             'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
             'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
-            'swiftmailer.spool.default.memory.path' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/swiftmailer/spool/default',
+            'swiftmailer.spool.default.memory.path' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/swiftmailer/spool/default',
             'swiftmailer.mailer.default.spool.enabled' => true,
             'swiftmailer.mailer.default.single_address' => NULL,
             'swiftmailer.spool.enabled' => true,
@@ -4147,7 +4211,7 @@ class appDevDebugProjectContainer extends Container
             'assetic.node.paths' => array(
 
             ),
-            'assetic.cache_dir' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/assetic',
+            'assetic.cache_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/assetic',
             'assetic.bundles' => array(
 
             ),
@@ -4159,13 +4223,13 @@ class appDevDebugProjectContainer extends Container
             'assetic.debug' => true,
             'assetic.use_controller' => true,
             'assetic.enable_profiler' => false,
-            'assetic.read_from' => '/opt/lampp/htdocs/OpenEcoles/app/../web',
-            'assetic.write_to' => '/opt/lampp/htdocs/OpenEcoles/app/../web',
+            'assetic.read_from' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/../web',
+            'assetic.write_to' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/../web',
             'assetic.variables' => array(
 
             ),
             'assetic.java.bin' => '/usr/bin/java',
-            'assetic.node.bin' => '/usr/bin/node',
+            'assetic.node.bin' => 'C:\\Program Files\\nodejs\\\\node.EXE',
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
@@ -4233,7 +4297,7 @@ class appDevDebugProjectContainer extends Container
             'doctrine.orm.naming_strategy.default.class' => 'Doctrine\\ORM\\Mapping\\DefaultNamingStrategy',
             'doctrine.orm.naming_strategy.underscore.class' => 'Doctrine\\ORM\\Mapping\\UnderscoreNamingStrategy',
             'doctrine.orm.auto_generate_proxy_classes' => true,
-            'doctrine.orm.proxy_dir' => '/opt/lampp/htdocs/OpenEcoles/app/cache/dev/doctrine/orm/Proxies',
+            'doctrine.orm.proxy_dir' => 'C:/wamp/www/ProjetTechnique_OpenEcoles/app/cache/dev/doctrine/orm/Proxies',
             'doctrine.orm.proxy_namespace' => 'Proxies',
             'sensio_framework_extra.view.guesser.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser',
             'sensio_framework_extra.controller.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener',
@@ -4257,21 +4321,30 @@ class appDevDebugProjectContainer extends Container
                     'lien' => 'open_ecoles_tutorial_homepage',
                     'nom' => 'Tutoriel',
                 ),
-
+                1 => array(
+                    'lien' => 'open_ecoles_open_seance_homepage',
+                    'nom' => 'OpenSeances',
+                ),
+                2 => array(
+                    'lien' => 'open_ecoles_open_seance_homepage',
+                    'nom' => 'OpenAnnonces',
+                ),
             ),
             'menu_vertical' => array(
                 0 => array(
                     'lien' => 'fos_user_profile_show',
                     'nom' => 'Mon profil',
+                    'badge' => false,
                 ),
                 1 => array(
                     'lien' => 'open_ecoles_user_homepage',
                     'nom' => 'Mes messages',
+                    'badge' => true,
                 ),
                 2 => array(
                     'lien' => 'open_ecoles_tutorial_mes_documents',
                     'nom' => 'Mes documents',
-
+                    'badge' => false,
                 ),
             ),
             'contenu_central' => array(
@@ -4279,8 +4352,16 @@ class appDevDebugProjectContainer extends Container
                     'action' => '',
                 ),
                 1 => array(
-
-                    'action' => 'OpenEcolesTutorialBundle:Tutoriel:topTutoriel',
+                    'action' => '',
+                ),
+                2 => array(
+                    'action' => '',
+                ),
+                3 => array(
+                    'action' => 'OpenEcolesWhatsupBundle:Whatsup:whatsup',
+                ),
+                4 => array(
+                    'action' => '',
                 ),
             ),
             'affichage_max_tutorial_par_categorie' => 3,
@@ -4334,6 +4415,17 @@ class appDevDebugProjectContainer extends Container
                 ),
             ),
             'stfalcon_tinymce.twig.extension.class' => 'Stfalcon\\Bundle\\TinymceBundle\\Twig\\Extension\\StfalconTinymceExtension',
+            'elements' => array(
+                'element1' => array(
+                    'lien' => 'OpenEcolesTutorial:Tutoriel:topTutoriel',
+                ),
+                'element2' => array(
+                    'lien' => '',
+                ),
+                'element3' => array(
+                    'lien' => '',
+                ),
+            ),
             'fos_user.backend_type_orm' => true,
             'fos_user.security.interactive_login_listener.class' => 'FOS\\UserBundle\\EventListener\\LastLoginListener',
             'fos_user.security.login_manager.class' => 'FOS\\UserBundle\\Security\\LoginManager',
