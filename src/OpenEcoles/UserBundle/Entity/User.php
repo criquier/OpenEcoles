@@ -34,6 +34,11 @@ class User extends BaseUser
      */
     private $nbNouveauxMessages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OpenEcoles\UserBundle\Entity\User", mappedBy="id")
+     */
+    private $amis; // Listes des messages envoyés
+
     public function __construct()
     {
         parent::__construct();
@@ -140,5 +145,38 @@ class User extends BaseUser
     public function getEnvoyes()
     {
         return $this->envoyes;
+    }
+
+    /**
+     * Add amis
+     *
+     * @param \OpenEcoles\UserBundle\Entity\User $amis
+     * @return User
+     */
+    public function addAmi(\OpenEcoles\UserBundle\Entity\User $amis)
+    {
+        $this->amis[] = $amis;
+    
+        return $this;
+    }
+
+    /**
+     * Remove amis
+     *
+     * @param \OpenEcoles\UserBundle\Entity\User $amis
+     */
+    public function removeAmi(\OpenEcoles\UserBundle\Entity\User $amis)
+    {
+        $this->amis->removeElement($amis);
+    }
+
+    /**
+     * Get amis
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAmis()
+    {
+        return $this->amis;
     }
 }

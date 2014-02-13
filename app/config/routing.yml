@@ -6,12 +6,8 @@ open_ecoles_open_seance:
     resource: "@OpenEcolesOpenSeanceBundle/Resources/config/routing.yml"
     prefix:   /OpenSeances
 
-open_ecoles_open_annonces:
-    resource: "@OpenEcolesOpenAnnoncesBundle/Resources/config/routing.yml"
-    prefix:   /
-
-open_annonces:
-    resource: "@OpenEcolesOpenAnnoncesBundle/Resources/config/routing.yml"
+open_ecoles_open_annonce:
+    resource: "@OpenEcolesOpenAnnonceBundle/Resources/config/routing.yml"
     prefix:   /OpenAnnonces
 
 open_ecoles_user:

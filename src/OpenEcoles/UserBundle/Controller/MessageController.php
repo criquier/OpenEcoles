@@ -95,6 +95,7 @@ class MessageController extends Controller
 
             // on recupère l'id du l'utilisateur courant
             foreach( $messages as $message )  {
+<<<<<<< HEAD
                 if($message->getAuteur() == $this->getUser())
                     $resultat.='<div class="bulleExp">';
                 else
@@ -108,6 +109,15 @@ class MessageController extends Controller
                 else
                     $resultat.='<div class="arrow_inner_dest"></div>';
                 $resultat .="</div>";
+=======
+                if($message->getAuteur()->getId()==$idauteur){
+                    $resultat.='Moi: ';
+                }else{
+                    $resultat.=$message->getAuteur()->getUsername().'   ';
+                }
+                $resultat.=$message->getDate()->format('d/m/Y H:i:s').'  ';
+                $resultat.=$message->getContenu().'</br>';
+>>>>>>> 19866180cc03c20536f9a14c61320fcb223a8dbc
             }
 
 
